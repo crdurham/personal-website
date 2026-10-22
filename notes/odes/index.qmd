@@ -1,0 +1,14 @@
+---
+title: "Ordinary Differential Equations"
+---
+
+A selection of review materials and quiz content from MATH 2410: Elementary Differential Equations
+at UConn which I wrote during Spring 2024.
+
+## Quizzes
+
+[Quiz 1](/files/MATH_2410Q__Quiz_1-4.pdf)
+
+[Quiz 2](/files/MATH_2410__Quiz_2-2.pdf)
+
+[Quiz 3](/files/MATH_2410Q__Quiz_3-5.pdf)

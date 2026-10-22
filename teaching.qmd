@@ -1,0 +1,56 @@
+
+---
+title: "Teaching"
+---
+
+I view teaching and learning as fundamentally human endeavors.
+My goal is to create a classroom in which students feel
+comfortable exploring unfamiliar ideas while developing the
+precision and rigor needed to do mathematics independently. 
+
+I aim to connect abstract mathematical concepts to geometric
+intuition, concrete examples, and visual representations
+whenever possible.
+
+For
+a full essay on my instructional approach, here is my [teaching philosophy statement](/files/Teaching_Statement-4.pdf).
+
+## Teaching experience
+
+My teaching experience includes calculus, multivariable
+calculus, and differential equations, both as a teaching
+assistant and as an instructor of record.
+
+As an instructor, I have designed course materials,
+assignments, and computational demonstrations to help
+students connect mathematical theory with applications.
+
+## Selected course materials
+
+### Multivariable Calculus
+
+Selected notes and activities covering topics such as
+gradients, directional derivatives, tangent planes,
+multiple integrals, and vector calculus.
+
+[Explore the notes](notes/math2110/index.qmd)
+
+### Ordinary Differential equations
+
+Notes from MATH 2410 at UConn, Elementary Differential Equations.
+
+[Explore the notes](notes/odes/index.qmd)
+
+## Calculus for Business and Economics
+
+Full course notes from MATH 1070 at UConn for which I've between
+instructor of record on three occasions. These are from Spring 2026
+in particular. Enjoy the Album of the Week selections!
+
+[Explore the notes](/files/MATH_1071_Full_Course_Notes-20.pdf)
+
+I also created Data Science Demos using Streamlit, a Python-based
+website platform. Screenshots from selected demos are provided here
+because Streamlit sites are not always 'awake.'
+
+[Demo Screenshots](demos.qmd)

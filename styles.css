@@ -1,0 +1,31 @@
+
+/* Overall typography and reading width */
+body {
+    line-height: 1.7;
+  }
+  
+  p, li {
+    max-width: 75ch;
+  }
+  
+  /* Headings */
+  h1, h2, h3 {
+    letter-spacing: -0.02em;
+  }
+  
+  /* Main content spacing */
+  #quarto-content {
+    padding-top: 1rem;
+  }
+  
+  /* Make expandable sections easy to distinguish */
+  .callout {
+    border-radius: 6px;
+  }
+  
+  /* Keep equations from feeling cramped */
+  .math.display {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  

@@ -1,0 +1,24 @@
+---
+title: Data Science Snippets
+---
+These screenshots were taken from Demos 1 and 2 as a quick look
+into what I put together for Data Science Demos in Calculus for Business
+and Economics.
+
+![](/files/demo1.png)
+
+![](/files/demo1_modeling.png)
+
+![](/files/demo_linear_model.png)
+
+![](/files/demo_quadratic_fit.png)
+
+![](/files/demo_mse.png)
+
+![](/files/demo2_plots1.png)
+
+![](/files/demo2_plots2.png)
+
+![](/files/demo_cost_function_outline.png)
+
+![](/files/demo_hamlet.png)

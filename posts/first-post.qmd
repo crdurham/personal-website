@@ -1,0 +1,13 @@
+
+---
+title: "Pilot"
+date: "2026-10-22"
+---
+
+This is the beginning of my online collection of writing
+about mathematics, teaching, and other interests.
+
+Over time, I hope to use this space to explore mathematical
+ideas beyond the constraints of a traditional lecture,
+share teaching experiments, and write about projects
+that interest me. 

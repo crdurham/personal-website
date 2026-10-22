@@ -1,0 +1,31 @@
+
+---
+title: "Research"
+---
+
+## Interests
+
+My research is in **geometric analysis**: I study how geometric
+conditions -- namely curvature constraints -- on a Riemannian manifold influence analytic
+properties of differential operators.
+
+## Current Research
+
+My doctoral work concerns estimates for the bottom of the
+spectrum of the Laplacian under integral Ricci curvature
+bounds. This work explores how curvature information, even
+when controlled in an integral sense, can constrain spectral
+properties.
+
+## Publications
+
+- *[Bottom Spectrum Estimate Under Curvature
+  Integrability Condition](https://doi.org/10.48550/arXiv.2506.23997)*  
+  *Journal of Functional Analysis* **290** (2026), no. 4, Article 111254.
+
+
+## Future directions
+
+<!-- Add a short discussion of your next research questions. -->
+
+Please see my [research statement](files/Research_Statement.pdf).

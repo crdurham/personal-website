@@ -1,0 +1,16 @@
+
+---
+title: "Writing"
+---
+
+A collection of written work in several different areas:
+expository mathematics, reflections on teaching,
+and other miscellany. Will be added over time.
+
+## Expository Mathematics
+
+[Welcome](posts/first-post.qmd) 
+
+## Teaching Reflections
+
+## Miscellaneous

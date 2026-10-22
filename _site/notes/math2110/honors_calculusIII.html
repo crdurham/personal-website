@@ -1,0 +1,1605 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Honors Calculus III — Interactive Activity</title>
+<!-- MathJax: lets you write LaTeX using \( ... \) inline and \[ ... \] for display equations. -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      // Avoid trying to interpret the slide-navigation UI as mathematics.
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --ink: #172033;
+    --muted: #647084;
+    --paper: #ffffff;
+    --canvas: #eef1f6;
+    --accent: #3157a7;
+    --accent-light: #e9efff;
+    --line: #dce2ec;
+    --warm: #f8f4ea;
+    --radius: 18px;
+    --shadow: 0 18px 50px rgba(25, 38, 62, .12);
+  }
+ 
+  .reveal-panel[hidden] {
+  display: none;
+}
+
+.reveal-toggle {
+  margin: 0.75rem 0 1rem;
+}
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  button { font: inherit; }
+  .app { min-height: 100vh; display: flex; flex-direction: column; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: .8rem clamp(1rem, 3vw, 2rem); color: var(--muted); font-size: .88rem;
+  }
+  .brand { color: var(--ink); font-weight: 750; letter-spacing: .01em; }
+  .top-actions { display: flex; gap: .5rem; align-items: center; }
+  .small-button, .nav-button {
+    border: 1px solid var(--line); background: white; color: var(--ink);
+    border-radius: 999px; padding: .55rem .9rem; cursor: pointer;
+  }
+  .small-button:hover, .nav-button:hover { border-color: var(--accent); }
+  .progress-track { height: 4px; background: #dfe4ed; }
+  .progress-bar { height: 100%; width: 0; background: var(--accent); transition: width .22s ease; }
+  main { width: min(1120px, calc(100% - 2rem)); margin: clamp(1rem, 4vh, 3rem) auto 1.5rem; flex: 1; }
+  .slide {
+    display: none; min-height: min(70vh, 690px); background: var(--paper);
+    border: 1px solid rgba(30, 45, 70, .06); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: clamp(1.4rem, 5vw, 4.5rem);
+    animation: appear .2s ease-out;
+  }
+  .example {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  margin: 1.25rem 0;
+  overflow: hidden;
+}
+
+.example-title {
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 0.75rem 1rem 0.25rem;
+}
+
+.example-body {
+  padding: 0.25rem 1rem 1rem;
+}
+  .slide.active { display: flex; flex-direction: column; }
+  @keyframes appear { from { opacity: .65; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .eyebrow {
+    color: var(--accent); text-transform: uppercase; letter-spacing: .13em;
+    font-size: .76rem; font-weight: 800; margin-bottom: 1rem;
+  }
+  h1, h2, h3 { line-height: 1.1; letter-spacing: -.035em; margin: 0; }
+  h1 { font-size: clamp(2.5rem, 6vw, 5rem); max-width: 13ch; }
+  h2 { font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 1.1rem; }
+  h3 { font-size: 1.2rem; margin-bottom: .7rem; letter-spacing: -.015em; }
+  p, li { font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.65; }
+  p { max-width: 75ch; }
+  .subtitle { font-size: clamp(1.1rem, 2vw, 1.45rem); color: var(--muted); margin-top: 1.2rem; }
+  .title-slide { justify-content: center; }
+  .title-slide .eyebrow { margin-bottom: 1.5rem; }
+  .title-meta { margin-top: 3rem; color: var(--muted); font-size: .95rem; line-height: 1.8; }
+  .rule { width: 5rem; height: 5px; background: var(--accent); border-radius: 5px; margin: 1.5rem 0; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .panel {
+    background: #f7f8fb; border: 1px solid var(--line); border-radius: 14px;
+    padding: clamp(1rem, 2vw, 1.5rem); min-width: 0;
+  }
+  .panel p:last-child { margin-bottom: 0; }
+  .placeholder {
+    border: 2px dashed #bdc8dc; border-radius: 14px; min-height: 180px;
+    display: grid; place-items: center; text-align: center; padding: 1.5rem;
+    color: var(--muted); background: #fafbfe;
+  }
+  .placeholder strong { display: block; color: var(--ink); margin-bottom: .35rem; }
+  .callout {
+    border-left: 4px solid var(--accent); background: var(--accent-light);
+    padding: 1rem 1.2rem; border-radius: 0 12px 12px 0; margin: 1.2rem 0;
+  }
+  .callout p { margin: 0; }
+  .prompt {
+    background: var(--warm); border: 1px solid #e9dfc9; border-radius: 14px;
+    padding: 1.2rem 1.4rem; margin-top: 1.2rem;
+  }
+  .prompt-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; color: #7b6433; }
+  details { margin-top: 1rem; border: 1px solid var(--line); border-radius: 12px; padding: .85rem 1rem; }
+  summary { cursor: pointer; font-weight: 700; }
+  .reveal-content { color: var(--muted); padding-top: .4rem; }
+  .reveal-content p { margin-bottom: .4rem; }
+  .slide-footer { margin-top: auto; padding-top: 2rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .85rem; }
+  .controls {
+    display: flex; align-items: center; justify-content: center; gap: .8rem;
+    padding: 0 1rem 1.2rem;
+  }
+  .nav-button { min-width: 112px; padding: .75rem 1.1rem; font-weight: 700; }
+  .nav-button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+  .nav-button:disabled { opacity: .35; cursor: not-allowed; }
+  .counter { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 5rem; text-align: center; }
+  .keyhint { text-align: center; padding: 0 1rem 1rem; color: #7a8495; font-size: .78rem; }
+  body.presentation .topbar, body.presentation .keyhint { display: none; }
+
+  body.presentation main {
+  width: min(1600px, calc(100% - 1rem));
+  height: calc(100vh - 4rem);
+  margin: .5rem auto;
+}
+
+body.presentation .slide {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+  body.presentation .controls { padding-bottom: .5rem; }
+  @media (max-width: 700px) {
+    .grid { grid-template-columns: 1fr; }
+    .topbar { align-items: flex-start; }
+    .brand { max-width: 13ch; }
+    .slide { min-height: 68vh; }
+    .nav-button { min-width: 0; }
+    .slide-footer { flex-direction: column; }
+  }
+  .fragment {
+  visibility: hidden;
+  }
+
+  .fragment.revealed {
+  visibility: visible;
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">MATH 2110 · Honors Activity</div>
+    <div class="top-actions">
+      <span id="section-label">Getting started</span>
+      <button class="small-button" id="presentation-toggle" type="button" aria-pressed="false">Presentation view</button>
+    </div>
+  </header>
+  <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+
+  <main id="deck" aria-live="polite">
+    <!-- SLIDE 1: Title. Replace the sample text directly. -->
+    <section class="slide active title-slide" data-section="Title">
+      <div class="eyebrow">MATH 2110 Honors · Activity 2</div>
+      <h1>  An Intro to Probability from Multivariable Calculus</h1>
+      <div class="rule"></div>
+      <p class="subtitle"> Are You Dense? </p>
+      <div class="title-meta">
+        <div> Section 128D </div>
+        <div> Dedicated to AVB </div>
+      </div>
+      <div class="slide-footer"><span></span><span></span></div>
+    </section>
+
+    <!-- SLIDE 2: Learning goals / setup. Duplicate this section to add a slide. -->
+    <section class="slide" data-section="Introduction">
+      <div class="eyebrow">01 · Intro</div>
+      <h2>An Example to Keep in Mind</h2>
+      <p>Throughout, the physical notion of <em>center of mass</em> is 
+        a good source of intuition.</p>
+      <div class="example">
+        <div class="example-title">Example</div>
+        <div class="example-body">
+        <p>A massless beam lies along the interval \([1,6]\). Six point masses are attached:</p>
+        <ul>
+          <li>\(m_1=0.10\) kg at \(x=1\)</li>
+          <li>\(m_2=0.30\) kg at \(x=2\)</li>
+          <li>\(m_3=0.05\) kg at \(x=3\)</li>
+          <li>\(m_4=0.40\) kg at \(x=4\)</li>
+          <li>\(m_5=0.10\) kg at \(x=5\)</li>
+          <li>\(m_6=0.05\) kg at \(x=6\)</li>
+        </ul>
+        <p>Where is the center of mass located along the beam?</p>
+      </div>
+    </div>
+
+    <details>
+      <summary>Solution</summary>
+      <div class="reveal-content">
+        <p>The center of mass  is located at \(\overline{x}\), the (weighted) average of the locations of the masses:</p>
+        \[\overline{x}=\frac{\sum_{i=1}^6x_im_i}{m_{tot}}
+          =\frac{(1)(0.1)+(2)(0.3)+(3)(0.05)+(4)(0.4)+(5)(0.1)+(6)(0.05)}{1}=\boxed{3.25}\]
+      </div>
+    </details>
+      <div class="slide-footer"><span></span><span>01  · 1</span></div>
+    </section>
+
+
+<section class="slide" data-section="Interactive Center of Mass">
+  <div class="eyebrow">02 · Center of Mass Visual</div>
+  <h2>Move the Masses</h2>
+  <p>Change the masses and observe how the center of mass responds.</p>
+
+  <div class="panel">
+    <svg id="mass-beam" viewBox="0 0 720 190"
+         role="img" aria-label="Interactive beam showing six point masses and the center of mass"
+         style="width:100%; height:auto; display:block;">
+      <line x1="70" y1="115" x2="650" y2="115"
+            stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+      <g id="beam-ticks"></g>
+      <g id="mass-markers"></g>
+      <line id="com-line" x1="70" y1="75" x2="70" y2="135"
+            stroke="#d94841" stroke-width="3" stroke-dasharray="5 4"/>
+      <circle id="com-dot" cx="70" cy="115" r="7" fill="#d94841"/>
+      <text id="com-label" x="70" y="58" text-anchor="middle"
+            fill="#d94841" font-size="15" font-weight="bold">COM</text>
+    </svg>
+
+    <p style="text-align:center">
+      Center of mass:
+      <strong id="com-value">3.25</strong>
+    </p>
+    <p style="text-align:center" id="mass-total">
+      Total mass: 1.00 kg
+    </p>
+  </div>
+
+  <div class="panel">
+    <strong>Adjust the masses</strong>
+    <p>All masses are measured in kilograms.</p>
+    <div id="mass-controls"></div>
+    <button type="button" id="reset-masses">Reset masses</button>
+  </div>
+</section>
+
+
+    <!-- SLIDE 3: Main mathematical content. -->
+    <section class="slide" data-section="Take a Chance on Me">
+      <div class="eyebrow">03 · A Roll of the Dice</div>
+      <h2>Center of Mass \(\iff\) Expected Value</h2>
+      <p>Take away the static scenario of masses on a beam and instead look at a simple game of chance.</p>
+      <div class="example">
+        <div class="example-title">Example</div>
+        <div class="example-body">
+        <p>We roll an unfair 6-sided die with the following weights (likelihoods):</p>
+        <ul>
+          <li>\(p_1=0.10\) of rolling \(x=1\)</li>
+          <li>\(p_2=0.30\) of rolling \(x=2\)</li>
+          <li>\(p_3=0.05\) of rolling \(x=3\)</li>
+          <li>\(p_4=0.40\) of rolling \(x=4\)</li>
+          <li>\(p_5=0.10\) of rolling \(x=5\)</li>
+          <li>\(p_6=0.05\) of rolling \(x=6\)</li>
+        </ul>
+        <p>If \(X\) is the (random) outcome of a single roll, what is the <em>expected value</em> of \(X\)?</p>
+      </div>
+    </div>
+    <details>
+        <summary>Solution</summary>
+        <div class="reveal-content">
+          <p>The expected value is the average of the possible outcomes weighted according to their respective probabilities:
+            \[E[X]=\sum_{i=1}^6x_ip_i=\boxed{3.25}\]
+          </p>
+        </div>
+      </details>
+      <div class="slide-footer"><span></span><span>03  · 1</span></div>
+    </section>
+
+
+<section class="slide" data-section="Roll the Die">
+  <div class="eyebrow">04 · Expected Value in Discrete Setting</div>
+  <h2>How Does Experimental Average Compare to Expected Value?</h2>
+  <p>Choose the probabilities, roll the die, and compare the observed results with the theoretical expectation.</p>
+
+  <div class="panel">
+    <strong>Choose the probabilities</strong>
+    <p class="subtle">Adjust the first five probabilities. The probability of rolling a 6 fills the remainder.</p>
+    <div id="die-controls"></div>
+    <p id="die-probability-sum"></p>
+    <button type="button" id="die-reset">Reset probabilities</button>
+  </div>
+
+  <div class="panel">
+    <label for="die-roll-count"><strong>Number of rolls</strong></label>
+    <select id="die-roll-count">
+      <option value="10">10</option>
+      <option value="100" selected>100</option>
+      <option value="1000">1,000</option>
+      <option value="10000">10,000</option>
+    </select>
+    <button type="button" id="die-roll-button">Roll the die</button>
+    <button type="button" id="die-clear-button">Clear results</button>
+
+    <p>Rolls completed: <strong id="die-n">—</strong></p>
+    <p>Expected value: <strong id="die-expected">3.250</strong></p>
+    <p>Sample mean: <strong id="die-mean">—</strong></p>
+  </div>
+
+  <div class="panel">
+    <strong>Observed vs. theoretical probabilities</strong>
+    <p class="subtle">Blue: observed proportion. Orange: theoretical probability.</p>
+    <canvas id="die-chart" height="300"
+      style="width:100%; height:300px; display:block"
+      aria-label="Bar chart of observed and theoretical die probabilities"></canvas>
+  </div>
+</section>
+
+
+<section class="slide" data-section="Meaning of Expected Value">
+    <div class="eyebrow">05 · What Does “Expected” Mean?</div>
+    <h2>Why Is It Called the Expected Value?</h2>
+  
+    <p>
+      The expected value is the theoretical average outcome of a
+      random experiment over many repetitions.
+    </p>
+  
+    <div class="panel">
+      <h3>The average of a finite sample</h3>
+      <p>
+        Suppose we roll the die \(N\) times, obtaining outcomes
+        \(X_1,X_2,\ldots,X_N\). Their sample mean is
+      </p>
+  
+      \[
+        \overline X_N
+        =\frac{X_1+\cdots+X_N}{N}.
+      \]
+  
+      <p>
+        This average depends on the rolls we actually observe, so
+        it can vary from one experiment to another.
+      </p>
+    </div>
+  
+    <div class="panel">
+      <h3>The theoretical expectation</h3>
+      <p>
+        The expected value \(E[X]\) is determined by the probabilities
+        of the possible outcomes, not by any particular set of rolls.
+        As we repeat the experiment more and more times, the sample
+        mean tends toward the expected value:
+      </p>
+  
+      \[
+        \boxed{\overline X_N\longrightarrow E[X]}
+        \qquad\text{as }N\to\infty.
+      \]
+  
+      <p>
+        For our loaded die, \(E[X]=3.25\). A finite sample might
+        average \(3.1\) or \(3.6\), but over many rolls its average
+        should settle near \(3.25\).
+      </p>
+    </div>
+  
+    <p>
+      <strong>Important:</strong> Expected value does not necessarily
+      mean the outcome you are most likely to get. It describes the
+      long-run average, not the most likely individual result.
+    </p>
+  </section>
+  
+
+
+
+<section class="slide" data-section="Mathematics">
+  <div class="eyebrow">06 · Great Expectations</div>
+  <h2>Expected Value of a Function with Discrete Outputs</h2>
+
+  
+<p>
+  
+</p>
+<div class="example">
+  <div class="example-title">Example</div>
+  <div class="example-body">
+  <p>Suppose it costs $3 to play a game: roll the same loaded die as before and
+    receive a dollar amount equal to the number rolled.
+    What is the expected net profit? (Hint: still a weighted average...but of what?)
+  </p>
+
+</div>
+</div>
+
+<details class="panel">
+  <summary>Solution</summary>
+  <div class="reveal-content">
+    <h3>From outcome to payoff</h3>
+
+    <p>
+      Let \(X\) be the number rolled. The net profit is
+      \(g(X)=X-3\):
+    </p>
+
+    \[
+    \begin{array}{c|rrrrrr}
+    X & 1 & 2 & 3 & 4 & 5 & 6\\
+    \hline
+    g(X) & -2 & -1 & 0 & 1 & 2 & 3
+    \end{array}
+    \]
+
+    <p>
+      We take the probability-weighted average of the possible
+      payoffs:
+    </p>
+
+    \[
+    \begin{aligned}
+    E[g(X)]
+    &=\sum_{i=1}^6g(i)P(X=i)\\
+    &=\sum_{i=1}^6(i-3)P(X=i)\\
+    &=\sum_{i=1}^6iP(X=i)
+      -3\sum_{i=1}^6P(X=i)\\
+    &=E[X]-3\\
+    &=3.25-3=\$0.25.
+    \end{aligned}
+    \]
+
+    <p>
+      <strong>Interpretation:</strong> The expected net profit is
+      25 cents per game.
+    </p>
+    <p>
+      <strong>Key idea:</strong> To find the expected value of a
+      function of a random outcome, apply the function to each
+      possible outcome, then take the probability-weighted average.
+    </p>
+  </div>
+</details>
+
+
+
+  <div class="slide-footer"><span></span><span>06  · 1</span></div>
+</section>
+
+
+<section class="slide" data-section="Discrete to Continuous">
+  <div class="eyebrow">07  · Discrete → Continuous</div>
+  <h2>From Weighted Sums to Weighted Integrals</h2>
+
+  <p>
+    For a discrete random variable, we calculate the expected value
+    by taking a probability-weighted average:
+  </p>
+
+  \[
+    E[X]=\sum_i x_iP(X=x_i).
+  \]
+
+  <p>
+    Now imagine that our random outcome is a point
+    \((X,Y)\) in a region \(D\subset\mathbb R^2\).
+    There are infinitely many possible outcomes. How can we
+    take their weighted average?
+  </p>
+
+  <details class="panel">
+    <summary>Idea: approximate the region by small cells</summary>
+    <div class="reveal-content">
+      <p>
+        Partition \(D\) into tiny cells \(A_1,\ldots,A_n\).
+        Choose a representative point \((x_i,y_i)\) in each cell.
+      </p>
+
+      <p>
+        Treat each cell as one possible outcome: if \(X\)
+        lands in \(A_i\), its coordinates are approximately
+        \((x_i,y_i)\).
+      </p>
+
+      <p>
+        The expected \(x\)-coordinate is then approximated by
+        the discrete weighted average
+      </p>
+
+      \[
+        E[X]\approx\sum_i x_iP((X,Y)\in A_i).
+      \]
+
+      <p>
+        For a <em>probability density function</em> \(f\), the probability of landing in a
+        sufficiently small cell is approximately its density
+        at that point times the cell's area:
+      </p>
+
+      \[
+        P((X,Y)\in A_i)\approx f(x_i,y_i)\,\Delta A_i.
+      \]
+
+      <p>
+        Substituting gives
+      </p>
+
+      \[
+        E[X]\approx\sum_i x_i f(x_i,y_i)\,\Delta A_i.
+      \]
+
+      <p>
+        As the cells get smaller, this Riemann sum becomes
+        a double integral:
+      </p>
+
+      \[
+        \boxed{E[X]=\iint_D x f(x,y)\,dA.}
+      \]
+      <p>
+        <strong>Takeaway:</strong> The integral is still a weighted
+        average. We have replaced a discrete collection of outcomes, each with an associated finite amount of
+        probability mass \(P(X=x_i)\),
+        by probability density \(f\) times infinitesimal area \(dA\).
+      </p>
+    </div>
+  </details>
+
+  
+</section>
+
+
+<section class="slide" data-section="Throw the Dart">
+  <div class="eyebrow">08 · The Continuous Setting</div>
+  <h2>A Random Experiment with Outcomes in \(\mathbb{R}^2\)</h2>
+
+  <div class="example">
+    <div class="example-title">Example</div>
+    <div class="example-body">
+      <p>
+        We throw darts at a circular board
+        \(D=\{(x,y):x^2+y^2\leq16\}\).
+        The location \((X,Y)\) of each throw follows the probability
+        density
+      </p>
+
+      \[
+        f(x,y)=\frac{25-x^2-(y-1)^2}{256\pi}.
+      \]
+
+      <p>For any region \(C\subseteq D\), the probability of landing in \(C\) is</p>
+
+      \[
+        P((X,Y)\in C)=\iint_C f(x,y)\,dA.
+      \]
+
+      <p>Use this to answer the following questions:</p>
+      <ol>
+        <li>What is the probability of hitting the board within 1 unit of its boundary?</li>
+        <li>What are the expected \(x\)- and \(y\)-coordinates of a throw?</li>
+      </ol>
+    </div>
+  </div>
+
+  <details>
+    <summary>Solution</summary>
+    <div class="reveal-content">
+      <ol>
+        <li>
+          The outer ring is
+          \(R=\{(x,y):9\leq x^2+y^2\leq16\}\).
+          Thus,
+          \[
+            P((X,Y)\in R)=\iint_R f(x,y)\,dA.
+          \]
+          <p>In polar coordinates, this becomes</p>
+          \[
+            \begin{aligned}
+            P((X,Y)\in R)
+            &=\frac{1}{256\pi}
+              \int_0^{2\pi}\int_3^4
+              (24-r^2+2r\sin\theta)\,r\,dr\,d\theta\\
+            &=\frac{1}{128}\int_3^4(24-r^2)r\,dr\\
+            &=\boxed{\frac{161}{512}\approx0.31}.
+            \end{aligned}
+          \]
+        </li>
+
+        <li>
+          Imagine \(f(x,y)\) represents the density of a two-dimensional
+          sheet covering \(D\). The expected coordinates are the
+          coordinates of its center of mass.
+
+          \[
+            E[X]=\iint_D xf(x,y)\,dA
+            =\frac{1}{256\pi}\iint_D
+            x(25-x^2-(y-1)^2)\,dA.
+          \]
+
+          Using polar coordinates,
+          \[
+            \begin{aligned}
+            E[X]
+            &=\frac{1}{256\pi}\int_0^{2\pi}\int_0^4
+            r\cos\theta(24-r^2+2r\sin\theta)\,r\,dr\,d\theta\\
+            &=\boxed{0}.
+            \end{aligned}
+          \]
+
+          Similarly,
+          \[
+            \begin{aligned}
+            E[Y]
+            &=\frac{1}{256\pi}\int_0^{2\pi}\int_0^4
+            r\sin\theta(24-r^2+2r\sin\theta)\,r\,dr\,d\theta\\
+            &=\boxed{\frac12}.
+            \end{aligned}
+          \]
+
+          <p>
+            <strong>Intuition:</strong> The density is symmetric in \(x\),
+            so the mass balances across the \(y\)-axis and \(E[X]=0\).
+            The density is shifted upward, giving \(E[Y]>0\).
+          </p>
+        </li>
+      </ol>
+    </div>
+  </details>
+
+  <div class="slide-footer"><span></span><span>08 · 1</span></div>
+</section>
+
+
+<section class="slide" data-section="Throw the Dart">
+  <div class="eyebrow">08 · Continuous Expectation</div>
+  <h2>Dart Throws on a Disk</h2>
+  <p>
+    Each dot represents a random throw. How do the sample averages
+    compare to the theoretical expected values?
+  </p>
+
+  <style>
+    #dart-lab {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(240px, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    #dart-lab .dart-card {
+      border: 1px solid var(--border, #d8e1ed);
+      border-radius: 12px;
+      padding: 14px;
+      min-width: 0;
+    }
+
+    #dart-lab .dart-board-wrap {
+      width: 100%;
+      aspect-ratio: 1;
+    }
+
+    #dart-lab canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    #dart-lab .dart-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin: 10px 0 16px;
+    }
+
+    #dart-lab button {
+      cursor: pointer;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 9px 5px;
+      background: var(--card, white);
+      color: var(--text, #172b4d);
+      font: inherit;
+    }
+
+    #dart-lab button[aria-pressed="true"] {
+      background: #3978b8;
+      color: white;
+      border-color: #3978b8;
+    }
+
+    #dart-lab .dart-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    #dart-lab .dart-actions button:first-child {
+      background: #3978b8;
+      border-color: #3978b8;
+      color: white;
+    }
+
+    #dart-lab .dart-stat {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border, #e2e8f0);
+    }
+
+    #dart-lab .dart-stat:last-child {
+      border-bottom: none;
+    }
+
+    #dart-lab .dart-muted {
+      color: var(--muted, #64748b);
+      font-size: 0.88em;
+    }
+
+    #dart-lab .dart-formula {
+      margin-top: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    #dart-lab .dart-formula p {
+      margin: 8px 0;
+    }
+
+    #dart-lab .dart-progress {
+      height: 5px;
+      background: var(--border, #e2e8f0);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    #dart-lab .dart-progress div {
+      height: 100%;
+      width: 0%;
+      background: #3978b8;
+      transition: width 0.08s linear;
+    }
+
+    @media (max-width: 720px) {
+      #dart-lab {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  <div id="dart-lab">
+    <div class="dart-card">
+      <div class="dart-board-wrap">
+        <canvas id="dart-board"
+          aria-label="Scatter plot of simulated dart throws on a disk">
+        </canvas>
+      </div>
+      <p class="dart-muted">
+        Each dot represents one throw. Notice the throws accumulate most near \((0,1)\), 
+        as this is where the density \(f(x,y)\) is maximized.
+      </p>
+    </div>
+
+    <div class="dart-card">
+      <strong>Number of throws</strong>
+      
+      <div class="dart-buttons">
+        <button type="button" data-throws="10" aria-pressed="false">10</button>
+        <button type="button" data-throws="100" aria-pressed="true">100</button>
+        <button type="button" data-throws="1000" aria-pressed="false">1,000</button>
+        <button type="button" data-throws="10000" aria-pressed="false">10,000</button>
+      </div>
+
+<div style="display:flex; gap:8px; align-items:center; margin:10px 0 16px; flex-wrap:wrap">
+  <label for="dart-custom-size">Custom sample size:</label>
+  <input id="dart-custom-size" type="number"
+    min="1" max="100000" step="1" value="10000"
+    style="width:110px; padding:8px; border:1px solid #cbd5e1; border-radius:8px">
+  <button type="button" id="dart-use-custom">Use number</button>
+</div>
+
+<div class="dart-actions">
+  <button type="button" id="dart-run">▶ Run simulation</button>
+  <button type="button" id="dart-add">+ Add 1,000 throws</button>
+  <button type="button" id="dart-reset">↻ Reset</button>
+</div>
+
+      <div class="dart-stat">
+        <span>Throws completed</span>
+        <strong id="dart-count">0</strong>
+      </div>
+      <div class="dart-stat">
+        <span>\(\bar{x}\) (sample)</span>
+        <strong id="dart-xbar">—</strong>
+      </div>
+      <div class="dart-stat">
+        <span>\(\bar{y}\) (sample)</span>
+        <strong id="dart-ybar">—</strong>
+      </div>
+
+      <div class="dart-progress">
+        <div id="dart-progress-bar"></div>
+      </div>
+      <p id="dart-status" class="dart-muted" aria-live="polite">
+        Choose a sample size and run the simulation.
+      </p>
+
+      <hr />
+
+      <strong>Theoretical values</strong>
+      <p>\(\mathbb E[X]=0\)</p>
+      <p>\(\mathbb E[Y]=\frac12\)</p>
+
+      <hr />
+
+      <strong>Probability density</strong>
+      <p>
+        \[
+        f(x,y)=\frac{1}{256\pi}\left(-x^2-(y-1)^2+25\right)
+        \]
+        \[
+        x^2+y^2\leq16
+        \]
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-section="Explore">
+  <div class="eyebrow">09 · Is It Worth It?</div>
+  <h2>Expected Payout</h2>
+  <p>Still throwing darts at the same board with same distribution, but now there are high stakes.</p>
+  <div class="example">
+    <div class="example-title">Example</div>
+    <div class="example-body">
+    <p>Each throw costs \$1. If we hit the bullseye
+
+      \(B = \{(x,y)\,:\,x^2+y^2\leq 1\},\)
+we win \$5; if we hit anywhere else in \(D\), we win nothing. 
+      <li>Write our profit for a single throw as a function \(g(x,y)\) depending on
+        the coordinates \((x,y)\) of where the dart lands.
+      </li>
+      <li>What is \(E[g(x,y)]\)? Explain. </li>
+    </p>
+  </div>
+</div>
+
+<details>
+  <summary>Solution</summary>
+  <div class="reveal-content">
+    <p>
+      <li>Our profit is \$4 if \((x,y)\) is in \(B\), -\$1 otherwise. Thus
+        \[g(x,y)=\begin{cases}4,\;\;(x,y)\;\text{in}\;\;B\\ -1,\;\;\text{otherwise}\end{cases}.\]
+      </li>  
+      <li>\(E[g(x,y)]\) is the expected profit from a single dart throw. Mathematically,
+        \[E[g(x,y)]=\iint_D g(x,y)f(x,y)\,dA=\iint_B 4f(x,y)\,dA + \iint_{D\setminus B} (-1)f(x,y)\,dA\]
+        \[=\frac{4}{256\pi}\int_0^{2\pi}\!\int_0^1 (-r^2+2r\sin\theta+24)r\,dr\,d\theta
+        -\frac{1}{256\pi}\int_0^{2\pi}\int_1^4(-r^2+2r\sin\theta+24)r\,dr\,d\theta\]
+        \[\ldots = -\frac{277}{512}\approx \boxed{-0.54}\]
+        <strong>Takeaway:</strong> We expect to lose money playing this game!
+      </li>
+    </p>
+  </div>
+</details>
+  <div class="slide-footer"><span></span><span>09</span></div>
+</section>
+
+<section class="slide" data-section="Well, in summary...">
+  <div class="eyebrow">10 · Well, in summary...</div>
+  <h2>From Center of Mass to Probability</h2>
+
+  <div class="panel">
+    <h3>1. Expected value is a weighted average.</h3>
+    For a discrete random variable,
+    \[
+      E[X]=\sum_i x_iP(X=x_i).
+    \]
+  </div>
+
+  <div class="panel">
+    <h3>2. Density distributes probability across a region.</h3>
+    A probability density satisfies
+    \[
+      \iint_D f(x,y)\,dA=1,
+    \]
+    and for \(C\subseteq D\),
+    \[
+      P((X,Y)\in C)=\iint_C f(x,y)\,dA.
+    \]
+  </div>
+
+  <div class="panel">
+    <h3>3. Double integrals give continuous expectations.</h3>
+    \[
+      E[g(X,Y)]=\iint_D g(x,y)f(x,y)\,dA.
+    \]
+    Choosing \(g(x,y)=x\) or \(g(x,y)=y\) gives the expected coordinates.
+  </div>
+
+  <div class="panel">
+    <h3>4. Expected value describes a long-run average.</h3>
+    Individual outcomes vary, but the sample mean approaches
+    the theoretical expectation over many independent repetitions.
+  </div>
+
+  <div class="callout">
+    <p>
+      <strong>One unifying idea:</strong> Probability, expected value,
+      and expected payoff all come from weighted averages according to the likelihood 
+      of occurrence. Sums are used in the discrete setting and integrals
+      in the continuous setting.
+    </p>
+  </div>
+</section>
+
+  </main>
+
+  <nav class="controls" aria-label="Slide navigation">
+    <button class="nav-button" id="prev" type="button" aria-label="Previous slide">← Previous</button>
+    <span class="counter" id="counter">1 / 10</span>
+    <button class="nav-button primary" id="next" type="button" aria-label="Next slide">Next →</button>
+  </nav>
+  <div class="keyhint">Navigate with ← and → or Space · Press Home / End to jump · Esc exits presentation view</div>
+</div> 
+
+<script>
+(() => {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const previous = document.getElementById('prev');
+  const next = document.getElementById('next');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress-bar');
+  const sectionLabel = document.getElementById('section-label');
+  const presentationToggle = document.getElementById('presentation-toggle');
+  let current = 0;
+
+  function getFragments(slide) {
+  return Array.from(slide.querySelectorAll('.fragment'));
+}
+
+function revealNext() {
+  const fragments = getFragments(slides[current]);
+  const nextFragment = fragments.find(
+    fragment => !fragment.classList.contains('revealed')
+  );
+
+  if (nextFragment) {
+    nextFragment.classList.add('revealed');
+    return true;
+  }
+  return false;
+}
+
+function hidePrevious() {
+  const fragments = getFragments(slides[current]);
+  const previousFragment = [...fragments].reverse().find(
+    fragment => fragment.classList.contains('revealed')
+  );
+
+  if (previousFragment) {
+    previousFragment.classList.remove('revealed');
+    return true;
+  }
+  return false;
+}
+  function showSlide(index) {
+    current = Math.max(0, Math.min(index, slides.length - 1));
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === current);
+      slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+    });
+    counter.textContent = `${current + 1} / ${slides.length}`;
+    progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+    sectionLabel.textContent = slides[current].dataset.section || `Slide ${current + 1}`;
+    previous.disabled = current === 0;
+    next.disabled = current === slides.length - 1;
+    document.title = `${slides[current].querySelector('h1, h2')?.textContent || 'Activity'} · Honors Calculus III`;
+    getFragments(slides[current]).forEach(fragment => {
+  fragment.classList.remove('revealed');
+});
+  }
+
+  previous.addEventListener('click', () => {
+  if (!hidePrevious() && current > 0) {
+    showSlide(current - 1);
+  }
+});
+
+next.addEventListener('click', () => {
+  if (!revealNext()) {
+    showSlide(current + 1);
+  }
+});
+  presentationToggle.addEventListener('click', () => {
+    const enabled = document.body.classList.toggle('presentation');
+    presentationToggle.setAttribute('aria-pressed', String(enabled));
+    presentationToggle.textContent = enabled ? 'Exit presentation' : 'Presentation view';
+  });
+
+  document.addEventListener('keydown', event => {
+    // Don't change slides when the user is interacting with a form control.
+    if (event.target.closest('input, textarea, select, button, summary, a')) {
+      if (event.key !== 'Escape') return;
+    }
+    if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'PageDown') {
+  event.preventDefault();
+  if (!revealNext()) showSlide(current + 1);
+} else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+  event.preventDefault();
+  if (!hidePrevious()) showSlide(current - 1);
+} else if (event.key === 'Home') {
+      event.preventDefault(); showSlide(0);
+    } else if (event.key === 'End') {
+      event.preventDefault(); showSlide(slides.length - 1);
+    } else if (event.key === 'Escape') {
+      document.body.classList.remove('presentation');
+      presentationToggle.setAttribute('aria-pressed', 'false');
+      presentationToggle.textContent = 'Presentation view';
+    }
+  });
+
+  showSlide(0);
+})();
+
+(() => {
+  const initialMasses = [0.10, 0.30, 0.05, 0.40, 0.10, 0.05];
+  const masses = [...initialMasses];
+
+  const controls = document.getElementById('mass-controls');
+  const ticks = document.getElementById('beam-ticks');
+  const markers = document.getElementById('mass-markers');
+  const comLine = document.getElementById('com-line');
+  const comDot = document.getElementById('com-dot');
+  const comLabel = document.getElementById('com-label');
+  const comValue = document.getElementById('com-value');
+  const totalLabel = document.getElementById('mass-total');
+
+  if (!controls || !ticks || !markers) return;
+
+  // Convert a beam position x = 1,...,6 into an SVG coordinate.
+  const px = x => 70 + (x - 1) * 116;
+
+  // Draw the six labeled positions on the beam.
+  for (let x = 1; x <= 6; x++) {
+    const p = px(x);
+    ticks.insertAdjacentHTML('beforeend', `
+      <line x1="${p}" y1="108" x2="${p}" y2="123"
+            stroke="currentColor" stroke-width="1.5"/>
+      <text x="${p}" y="151" text-anchor="middle"
+            fill="currentColor" font-size="15">${x}</text>
+    `);
+  }
+
+  // Create one slider for each point mass.
+  initialMasses.forEach((mass, i) => {
+    controls.insertAdjacentHTML('beforeend', `
+      <div style="display:grid; grid-template-columns:65px 1fr 85px;
+                  align-items:center; gap:12px; margin:12px 0;">
+        <label for="mass-${i}">x = ${i + 1}</label>
+        <input id="mass-${i}" type="range"
+               min="0" max="1" step="0.05" value="${mass}"
+               style="width:100%">
+        <output id="mass-output-${i}">${mass.toFixed(2)} kg</output>
+      </div>
+    `);
+  });
+
+  function update() {
+    let total = 0;
+    let weightedSum = 0;
+
+    masses.forEach((mass, i) => {
+      total += mass;
+      weightedSum += mass * (i + 1);
+
+      document.getElementById(`mass-output-${i}`).textContent =
+        `${mass.toFixed(2)} kg`;
+    });
+
+    markers.innerHTML = masses.map((mass, i) => {
+      const x = px(i + 1);
+      // Larger masses have larger circles; zero mass has no marker.
+      const r = mass === 0 ? 0 : 5 + 13 * Math.sqrt(mass);
+      const labelY = 95 - r;
+
+      return `
+        <circle cx="${x}" cy="115" r="${r}"
+                fill="#4788c7" fill-opacity="0.85"
+                stroke="#245b8e" stroke-width="1.5"/>
+        <text x="${x}" y="${labelY}" text-anchor="middle"
+              fill="currentColor" font-size="13">
+          ${mass.toFixed(2)}
+        </text>
+      `;
+    }).join('');
+
+    totalLabel.textContent = `Total mass: ${total.toFixed(2)} kg`;
+
+    if (total === 0) {
+      comValue.textContent = 'undefined';
+      comLine.style.display = 'none';
+      comDot.style.display = 'none';
+      comLabel.style.display = 'none';
+      return;
+    }
+
+    const center = weightedSum / total;
+    const x = px(center);
+
+    comValue.textContent = center.toFixed(3);
+    comLine.style.display = '';
+    comDot.style.display = '';
+    comLabel.style.display = '';
+
+    comLine.setAttribute('x1', x);
+    comLine.setAttribute('x2', x);
+    comDot.setAttribute('cx', x);
+    comLabel.setAttribute('x', x);
+  }
+
+  masses.forEach((_, i) => {
+    document.getElementById(`mass-${i}`).addEventListener('input', e => {
+      masses[i] = Number(e.target.value);
+      update();
+    });
+  });
+
+  document.getElementById('reset-masses').addEventListener('click', () => {
+    initialMasses.forEach((mass, i) => {
+      masses[i] = mass;
+      document.getElementById(`mass-${i}`).value = mass;
+    });
+    update();
+  });
+
+  update();
+})();
+
+
+(() => {
+  const initial = [0.10, 0.30, 0.05, 0.40, 0.10, 0.05];
+  let p = [...initial];
+  let counts = Array(6).fill(0);
+  let n = 0;
+
+  const $ = id => document.getElementById(id);
+  const controls = $('die-controls');
+  const canvas = $('die-chart');
+  const ctx = canvas.getContext('2d');
+
+  if (!controls || !canvas) return;
+
+  // Create the five adjustable sliders.
+  for (let i = 0; i < 5; i++) {
+    const row = document.createElement('div');
+    row.style.cssText =
+      'display:grid;grid-template-columns:35px 1fr 65px;gap:10px;align-items:center;margin:10px 0';
+
+    row.innerHTML = `
+      <label for="die-p-${i}">p${i + 1}</label>
+      <input id="die-p-${i}" type="range"
+        min="0" max="1" step="0.01" value="${initial[i]}"
+        style="width:100%">
+      <output id="die-out-${i}">${initial[i].toFixed(2)}</output>
+    `;
+    controls.appendChild(row);
+  }
+
+  const last = document.createElement('p');
+  last.innerHTML = 'p<sub>6</sub> = <strong id="die-p6">0.05</strong>';
+  controls.appendChild(last);
+
+  function expected() {
+    return p.reduce((sum, prob, i) => sum + (i + 1) * prob, 0);
+  }
+
+  function resetResults() {
+    counts = Array(6).fill(0);
+    n = 0;
+    $('die-n').textContent = '—';
+    $('die-mean').textContent = '—';
+    draw();
+  }
+
+  function updateProbabilities(changed = 0) {
+    const values = Array.from({length: 5}, (_, i) =>
+      Number($(`die-p-${i}`).value)
+    );
+
+    // If the sliders exceed a total of 1, scale the other
+    // four probabilities to leave room for the changed one.
+    const sum = values.reduce((a, b) => a + b, 0);
+    if (sum > 1) {
+      const fixed = values[changed];
+      const others = values.reduce((s, v, i) =>
+        s + (i === changed ? 0 : v), 0);
+      for (let i = 0; i < 5; i++) {
+        if (i !== changed) {
+          values[i] = others > 0
+            ? Math.floor(((values[i] * (1 - fixed) / others) + 1e-8) * 100) / 100
+            : 0;
+          $(`die-p-${i}`).value = values[i];
+        }
+      }
+    }
+
+    const total = values.reduce((a, b) => a + b, 0);
+    p = [...values, Math.max(0, +(1 - total).toFixed(2))];
+
+    values.forEach((v, i) => {
+      $(`die-out-${i}`).textContent = v.toFixed(2);
+    });
+    $('die-p6').textContent = p[5].toFixed(2);
+    $('die-probability-sum').textContent =
+      `Total probability: ${p.reduce((a, b) => a + b, 0).toFixed(2)}`;
+    $('die-expected').textContent = expected().toFixed(3);
+    draw();
+  }
+
+  function roll() {
+    n = Number($('die-roll-count').value);
+    counts = Array(6).fill(0);
+
+    // Generate independent rolls using cumulative probabilities.
+    const cumulative = [];
+    p.reduce((sum, value, i) =>
+      (cumulative[i] = sum + value, sum + value), 0);
+
+    let total = 0;
+    for (let k = 0; k < n; k++) {
+      const u = Math.random();
+      let i = cumulative.findIndex(c => u < c);
+      if (i < 0) i = 5;
+      counts[i]++;
+      total += i + 1;
+    }
+
+    $('die-n').textContent = n.toLocaleString();
+    $('die-mean').textContent = (total / n).toFixed(3);
+    draw();
+  }
+
+  function draw() {
+    const rect = canvas.getBoundingClientRect();
+    const width = Math.max(rect.width, 280);
+    const height = 300;
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+
+    const left = 38, right = 12, top = 18, bottom = 38;
+    const plotH = height - top - bottom;
+    const plotW = width - left - right;
+    const observed = n ? counts.map(c => c / n) : Array(6).fill(0);
+    const ymax = Math.max(0.5, ...p, ...observed);
+    const scaleMax = Math.min(1, Math.ceil(ymax * 10) / 10);
+    const y = v => top + plotH * (1 - v / scaleMax);
+
+    ctx.font = '12px system-ui, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#687386';
+    ctx.strokeStyle = '#e1e5ec';
+
+    for (let j = 0; j <= 5; j++) {
+      const value = scaleMax * j / 5;
+      const yy = y(value);
+      ctx.beginPath();
+      ctx.moveTo(left, yy);
+      ctx.lineTo(width - right, yy);
+      ctx.stroke();
+      ctx.fillText(value.toFixed(2), left - 6, yy + 4);
+    }
+
+    const group = plotW / 6;
+    const bw = Math.min(22, group * 0.28);
+
+    for (let i = 0; i < 6; i++) {
+      const center = left + group * (i + 0.5);
+
+      [
+        {value: observed[i], x: center - bw - 2, color: '#3978b8'},
+        {value: p[i], x: center + 2, color: '#d58a34'}
+      ].forEach(bar => {
+        ctx.fillStyle = bar.color;
+        ctx.fillRect(bar.x, y(bar.value), bw,
+          top + plotH - y(bar.value));
+      });
+
+      ctx.fillStyle = '#344054';
+      ctx.textAlign = 'center';
+      ctx.fillText(String(i + 1), center, height - 13);
+    }
+  }
+
+  for (let i = 0; i < 5; i++) {
+    $(`die-p-${i}`).addEventListener('input', () => {
+      resetResults();
+      updateProbabilities(i);
+    });
+  }
+
+  $('die-reset').addEventListener('click', () => {
+    initial.slice(0, 5).forEach((v, i) => {
+      $(`die-p-${i}`).value = v;
+    });
+    resetResults();
+    updateProbabilities();
+  });
+
+  $('die-roll-button').addEventListener('click', roll);
+  $('die-clear-button').addEventListener('click', resetResults);
+  window.addEventListener('resize', draw);
+
+  updateProbabilities();
+  draw();
+})();
+
+
+
+(() => {
+  const lab = document.getElementById("dart-lab");
+  if (!lab || lab.dataset.initialized) return;
+  lab.dataset.initialized = "true";
+
+  const $ = id => document.getElementById(id);
+  const canvas = $("dart-board");
+  const ctx = canvas.getContext("2d");
+
+  const countEl = $("dart-count");
+  const xbarEl = $("dart-xbar");
+  const ybarEl = $("dart-ybar");
+  const statusEl = $("dart-status");
+  const progressEl = $("dart-progress-bar");
+  const runButton = $("dart-run");
+  const resetButton = $("dart-reset");
+  const addButton = $("dart-add");
+  const customInput = $("dart-custom-size");
+  const customButton = $("dart-use-custom");
+  const sizeButtons = [...lab.querySelectorAll("[data-throws]")];
+
+  let sampleSize = 100;
+  let points = [];
+  let shown = 0;
+  let sumX = 0;
+  let sumY = 0;
+  let running = false;
+  let animationId = null;
+
+  function samplePoint() {
+    while (true) {
+      const r = 4 * Math.sqrt(Math.random());
+      const theta = 2 * Math.PI * Math.random();
+      const x = r * Math.cos(theta);
+      const y = r * Math.sin(theta);
+
+      const weight = 25 - x * x - (y - 1) ** 2;
+
+      if (Math.random() < weight / 25) {
+        return { x, y };
+      }
+    }
+  }
+
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+
+  function draw() {
+    const rect = canvas.getBoundingClientRect();
+    const w = rect.width;
+    const h = rect.height;
+    if (!w || !h) return;
+
+    ctx.clearRect(0, 0, w, h);
+
+    const scale = Math.min(w, h) * 0.43;
+    const cx = w / 2;
+    const cy = h / 2;
+    const px = x => cx + scale * x / 4;
+    const py = y => cy - scale * y / 4;
+
+    ctx.beginPath();
+    ctx.arc(cx, cy, scale, 0, 2 * Math.PI);
+    ctx.fillStyle = "#f4f8fd";
+    ctx.fill();
+
+    ctx.strokeStyle = "#a5b4c8";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(px(-4.35), py(0));
+    ctx.lineTo(px(4.35), py(0));
+    ctx.moveTo(px(0), py(-4.35));
+    ctx.lineTo(px(0), py(4.35));
+    ctx.stroke();
+
+    ctx.fillStyle = "#344054";
+    ctx.font = "12px system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("−4", px(-4), py(0) + 16);
+    ctx.fillText("4", px(4), py(0) + 16);
+    ctx.fillText("4", px(0) - 12, py(4) + 4);
+    ctx.fillText("−4", px(0) - 16, py(-4) + 4);
+    ctx.fillText("x", px(4.3), py(0) + 4);
+    ctx.fillText("y", px(0) + 10, py(4.3));
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, scale, 0, 2 * Math.PI);
+    ctx.clip();
+
+    const radius = shown > 1500 ? 1.6 : 2.7;
+    ctx.fillStyle = shown > 1500
+      ? "rgba(40,112,190,0.48)"
+      : "rgba(40,112,190,0.62)";
+
+    for (let i = 0; i < shown; i++) {
+      const p = points[i];
+      ctx.beginPath();
+      ctx.arc(px(p.x), py(p.y), radius, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.arc(cx, cy, scale, 0, 2 * Math.PI);
+    ctx.strokeStyle = "#27496d";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  function updateStats() {
+    countEl.textContent = shown.toLocaleString();
+    xbarEl.textContent = shown ? (sumX / shown).toFixed(3) : "—";
+    ybarEl.textContent = shown ? (sumY / shown).toFixed(3) : "—";
+
+    // For "add throws", the progress bar is just a visual indicator.
+    progressEl.style.width =
+      `${100 * shown / Math.max(sampleSize, shown, 1)}%`;
+  }
+
+  function stopAnimation() {
+    if (animationId !== null) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+    running = false;
+  }
+
+  function reset() {
+    stopAnimation();
+    points = [];
+    shown = 0;
+    sumX = 0;
+    sumY = 0;
+
+    updateStats();
+    draw();
+
+    runButton.disabled = false;
+    addButton.disabled = false;
+    runButton.textContent = "▶ Run simulation";
+    statusEl.textContent = "Choose a sample size and run the simulation.";
+  }
+
+  // Animate new throws while retaining any existing sample.
+  function animateTo(target) {
+    if (running) return;
+
+    running = true;
+    runButton.disabled = true;
+    addButton.disabled = true;
+    runButton.textContent = "Simulation running…";
+    statusEl.textContent = "Darts are landing…";
+
+    function animate() {
+      if (!running) return;
+
+      // Generate and draw a batch on each animation frame.
+      const batch = target > 10000 ? 250 : 100;
+      const end = Math.min(shown + batch, target);
+
+      while (shown < end) {
+        const p = samplePoint();
+        points.push(p);
+        sumX += p.x;
+        sumY += p.y;
+        shown++;
+      }
+
+      draw();
+      updateStats();
+
+      if (shown < target) {
+        animationId = requestAnimationFrame(animate);
+      } else {
+        stopAnimation();
+        runButton.disabled = false;
+        addButton.disabled = false;
+        runButton.textContent = "▶ Run again";
+        statusEl.textContent =
+          `Finished ${shown.toLocaleString()} throws. Add more or try another sample size.`;
+      }
+    }
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  function run() {
+    if (running) return;
+    reset();
+    animateTo(sampleSize);
+  }
+
+  sizeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      sampleSize = Number(button.dataset.throws);
+      customInput.value = sampleSize;
+
+      sizeButtons.forEach(b =>
+        b.setAttribute("aria-pressed", String(b === button))
+      );
+
+      reset();
+    });
+  });
+
+  customButton.addEventListener("click", () => {
+    const value = Number(customInput.value);
+
+    if (!Number.isInteger(value) || value < 1 || value > 100000) {
+      statusEl.textContent =
+        "Enter a whole number from 1 to 100,000.";
+      return;
+    }
+
+    sampleSize = value;
+    sizeButtons.forEach(b =>
+      b.setAttribute(
+        "aria-pressed",
+        String(Number(b.dataset.throws) === value)
+      )
+    );
+
+    reset();
+  });
+
+  runButton.addEventListener("click", run);
+
+  addButton.addEventListener("click", () => {
+    if (!running) animateTo(shown + 1000);
+  });
+
+  resetButton.addEventListener("click", reset);
+
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(resizeCanvas).observe(canvas);
+  } else {
+    window.addEventListener("resize", resizeCanvas);
+  }
+
+  resizeCanvas();
+})();
+
+
+
+</script>
+</body>
+</html>

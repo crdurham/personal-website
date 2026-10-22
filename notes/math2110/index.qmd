@@ -1,0 +1,14 @@
+
+
+---
+title: "Multivariable Calculus"
+---
+
+These notes explore the geometry and analysis of functions
+of several variables, with worked examples and optional
+hints and solutions.
+
+## Topics
+
+- [Gradients and directional derivatives](gradients.qmd)
+- [Honors Activity Slides: Probability via Multiple Integrals](honors_calculusIII.html)

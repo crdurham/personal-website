@@ -1,0 +1,57 @@
+
+---
+title: "Gradients and Directional Derivatives"
+---
+
+## The gradient
+
+For a differentiable function \(f:\mathbb{R}^2\to\mathbb{R}\),
+
+$$
+\nabla f(x,y)
+=
+\left\langle f_x(x,y),f_y(x,y)\right\rangle.
+$$
+
+The gradient points in the direction of steepest ascent.
+
+::: {.callout-tip collapse="true" title="Geometric intuition"}
+
+The gradient is perpendicular to the level curve through
+the point. It points toward increasing values of the function.
+
+:::
+
+## Example
+
+Let
+
+$$ f(x,y)=x^2+2y^2. $$
+
+::: {.callout-note collapse="true" title="Hint"}
+
+Calculate the two partial derivatives separately.
+
+:::
+
+::: {.callout-important collapse="true" title="Solution"}
+
+We obtain
+
+$$
+f_x=2x,\qquad f_y=4y,
+$$
+
+so
+
+$$
+\nabla f(x,y)=\langle 2x,4y\rangle.
+$$
+
+At $(1,2)$, this becomes
+
+$$
+\nabla f(1,2)=\langle 2,8\rangle.
+$$
+
+:::

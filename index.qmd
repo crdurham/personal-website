@@ -1,0 +1,28 @@
+---
+title: "Cole Durham"
+subtitle: "Teaching · Research"
+---
+
+I am currently a Ph.D. candidate in mathematics at the
+University of Connecticut, advised by Ovidiu Munteanu,
+with an expected graduation date of May 2027.
+
+My research explores relationships between geometric
+and analytic properties of Riemannian manifolds. In particular,
+I have done work relating to the spectrum of the Laplacian
+under bounded integral Ricci curvature.
+
+I have had the great fortune to teach roughly 1000 students
+throughout my 11 semesters at UConn across Calculus I-III, Calculus
+for Business and Economics, and Elementary Differential Equations. Being an educator will
+always be passionate about.
+
+## Explore
+
+- [CV](files/CV_Fall_2026.pdf): My most recent CV.
+- [Research](research.qmd): Research interests and publications.
+- [Teaching](teaching.qmd): Teaching philosophy, course materials,
+  and interactive mathematical explorations.
+- [Writing](writing.qmd): Expository writing and other projects.
+
+<!-- quarto publish gh-pages is for pushing updates to gh pages -->
