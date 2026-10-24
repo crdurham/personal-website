@@ -1,38 +1,59 @@
 [
   {
-    "objectID": "notes/math2110/gradients.html",
-    "href": "notes/math2110/gradients.html",
-    "title": "Gradients and Directional Derivatives",
+    "objectID": "writing.html",
+    "href": "writing.html",
+    "title": "Writing",
     "section": "",
-    "text": "For a differentiable function (f:^2),\n\\[\n\\nabla f(x,y)\n=\n\\left\\langle f_x(x,y),f_y(x,y)\\right\\rangle.\n\\]\nThe gradient points in the direction of steepest ascent.\n\n\n\n\n\n\nGeometric intuition\n\n\n\n\n\nThe gradient is perpendicular to the level curve through the point. It points toward increasing values of the function."
+    "text": "A collection of written work in several different areas: expository mathematics, reflections on teaching, and other miscellany. Will be added over time."
   },
   {
-    "objectID": "notes/math2110/gradients.html#the-gradient",
-    "href": "notes/math2110/gradients.html#the-gradient",
-    "title": "Gradients and Directional Derivatives",
+    "objectID": "writing.html#expository-mathematics",
+    "href": "writing.html#expository-mathematics",
+    "title": "Writing",
+    "section": "Expository Mathematics",
+    "text": "Expository Mathematics\nWelcome"
+  },
+  {
+    "objectID": "writing.html#teaching-reflections",
+    "href": "writing.html#teaching-reflections",
+    "title": "Writing",
+    "section": "Teaching Reflections",
+    "text": "Teaching Reflections"
+  },
+  {
+    "objectID": "writing.html#miscellaneous",
+    "href": "writing.html#miscellaneous",
+    "title": "Writing",
+    "section": "Miscellaneous",
+    "text": "Miscellaneous"
+  },
+  {
+    "objectID": "notes/math2110/index.html",
+    "href": "notes/math2110/index.html",
+    "title": "Multivariable Calculus",
     "section": "",
-    "text": "For a differentiable function (f:^2),\n\\[\n\\nabla f(x,y)\n=\n\\left\\langle f_x(x,y),f_y(x,y)\\right\\rangle.\n\\]\nThe gradient points in the direction of steepest ascent.\n\n\n\n\n\n\nGeometric intuition\n\n\n\n\n\nThe gradient is perpendicular to the level curve through the point. It points toward increasing values of the function."
+    "text": "These notes explore the geometry and analysis of functions of several variables, with worked examples and optional hints and solutions."
   },
   {
-    "objectID": "notes/math2110/gradients.html#example",
-    "href": "notes/math2110/gradients.html#example",
-    "title": "Gradients and Directional Derivatives",
-    "section": "Example",
-    "text": "Example\nLet\n\\[ f(x,y)=x^2+2y^2. \\]\n\n\n\n\n\n\nHint\n\n\n\n\n\nCalculate the two partial derivatives separately.\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe obtain\n\\[\nf_x=2x,\\qquad f_y=4y,\n\\]\nso\n\\[\n\\nabla f(x,y)=\\langle 2x,4y\\rangle.\n\\]\nAt \\((1,2)\\), this becomes\n\\[\n\\nabla f(1,2)=\\langle 2,8\\rangle.\n\\]"
-  },
-  {
-    "objectID": "notes/odes/index.html",
-    "href": "notes/odes/index.html",
-    "title": "Ordinary Differential Equations",
-    "section": "",
-    "text": "A selection of review materials and quiz content from MATH 2410: Elementary Differential Equations at UConn which I wrote during Spring 2024."
-  },
-  {
-    "objectID": "notes/odes/index.html#topics",
-    "href": "notes/odes/index.html#topics",
-    "title": "Ordinary Differential Equations",
+    "objectID": "notes/math2110/index.html#topics",
+    "href": "notes/math2110/index.html#topics",
+    "title": "Multivariable Calculus",
     "section": "Topics",
-    "text": "Topics"
+    "text": "Topics\n\nGradients and directional derivatives\nHonors Activity Slides: Probability via Multiple Integrals"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Cole Durham",
+    "section": "",
+    "text": "I am currently a Ph.D. candidate in mathematics at the University of Connecticut, advised by Ovidiu Munteanu, with an expected graduation date of May 2027.\nMy research explores relationships between geometric and analytic properties of Riemannian manifolds. In particular, I have done work relating to the spectrum of the Laplacian under bounded integral Ricci curvature.\nI have had the great fortune to teach roughly 1000 students throughout my 11 semesters at UConn across Calculus I-III, Calculus for Business and Economics, and Elementary Differential Equations. Being an educator will always be passionate about."
+  },
+  {
+    "objectID": "index.html#explore",
+    "href": "index.html#explore",
+    "title": "Cole Durham",
+    "section": "Explore",
+    "text": "Explore\n\nCV: My most recent CV.\nResearch: Research interests and publications.\nTeaching: Teaching philosophy, course materials, and interactive mathematical explorations.\nWriting: Expository writing and other projects."
   },
   {
     "objectID": "posts/first-post.html",
@@ -63,15 +84,22 @@
     "text": "Selected course materials\n\nMultivariable Calculus\nSelected notes and activities covering topics such as gradients, directional derivatives, tangent planes, multiple integrals, and vector calculus.\nExplore the notes\n\n\nOrdinary Differential equations\nNotes from MATH 2410 at UConn, Elementary Differential Equations.\nExplore the notes"
   },
   {
-    "objectID": "teaching.html#teaching-philosophy",
-    "href": "teaching.html#teaching-philosophy",
+    "objectID": "teaching.html#calculus-for-business-and-economics",
+    "href": "teaching.html#calculus-for-business-and-economics",
     "title": "Teaching",
-    "section": "Teaching philosophy",
-    "text": "Teaching philosophy"
+    "section": "Calculus for Business and Economics",
+    "text": "Calculus for Business and Economics\nFull course notes from MATH 1070 at UConn for which I’ve between instructor of record on three occasions. These are from Spring 2026 in particular. Enjoy the Album of the Week selections!\nExplore the notes\nI also created Data Science Demos using Streamlit, a Python-based website platform. Screenshots from selected demos are provided here because Streamlit sites are not always ‘awake.’\nDemo Screenshots"
   },
   {
     "objectID": "research.html",
     "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "My research is in geometric analysis: I study how geometric conditions – namely curvature constraints – on a Riemannian manifold influence analytic properties of differential operators."
+  },
+  {
+    "objectID": "research.html#interests",
+    "href": "research.html#interests",
     "title": "Research",
     "section": "",
     "text": "My research is in geometric analysis: I study how geometric conditions – namely curvature constraints – on a Riemannian manifold influence analytic properties of differential operators."
@@ -98,102 +126,18 @@
     "text": "Future directions\n\nPlease see my research statement."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Cole Durham",
+    "objectID": "demos.html",
+    "href": "demos.html",
+    "title": "Data Science Snippets",
     "section": "",
-    "text": "I am currently a Ph.D. candidate in mathematics at the University of Connecticut, advised by Ovidiu Munteanu, with an expected graduation date of May 2027.\nMy research explores relationships between geometric and analytic properties of Riemannian manifolds. In particular, I have done work relating to the spectrum of the Laplacian under bounded integral Ricci curvature.\nI have had the great fortune to teach roughly 1000 students throughout my 11 semesters at UConn across Calculus I-III, Calculus for Business and Economics, and Elementary Differential Equations. Being an educator will always be passionate about."
+    "text": "These screenshots were taken from Demos 1 and 2 as a quick look into what I put together for Data Science Demos in Calculus for Business and Economics."
   },
   {
-    "objectID": "index.html#explore",
-    "href": "index.html#explore",
-    "title": "Cole Durham",
-    "section": "Explore",
-    "text": "Explore\n\nCV: My most recent CV.\nResearch: Research interests and publications.\nTeaching: Teaching philosophy, course materials, and interactive mathematical explorations.\nWriting: Expository writing and other projects."
-  },
-  {
-    "objectID": "notes/math2110/index.html",
-    "href": "notes/math2110/index.html",
-    "title": "Multivariable Calculus",
+    "objectID": "notes/odes/index.html",
+    "href": "notes/odes/index.html",
+    "title": "Ordinary Differential Equations",
     "section": "",
-    "text": "These notes explore the geometry and analysis of functions of several variables, with worked examples and optional hints and solutions."
-  },
-  {
-    "objectID": "notes/math2110/index.html#topics",
-    "href": "notes/math2110/index.html#topics",
-    "title": "Multivariable Calculus",
-    "section": "Topics",
-    "text": "Topics\n\nGradients and directional derivatives\nHonors Activity Slides: Probability via Multiple Integrals"
-  },
-  {
-    "objectID": "writing.html",
-    "href": "writing.html",
-    "title": "Writing",
-    "section": "",
-    "text": "A collection of written work in several different areas: expository mathematics, reflections on teaching, and other miscellany. Will be added over time."
-  },
-  {
-    "objectID": "writing.html#posts",
-    "href": "writing.html#posts",
-    "title": "Writing",
-    "section": "Posts",
-    "text": "Posts"
-  },
-  {
-    "objectID": "research.html#section",
-    "href": "research.html#section",
-    "title": "Research",
-    "section": "",
-    "text": "My research is in geometric analysis: I study how geometric conditions – namely curvature constraints – on a Riemannian manifold influence analytic properties of differential operators."
-  },
-  {
-    "objectID": "research.html#research-interests",
-    "href": "research.html#research-interests",
-    "title": "Research",
-    "section": "",
-    "text": "My research is in geometric analysis: I study how geometric conditions – namely curvature constraints – on a Riemannian manifold influence analytic properties of differential operators."
-  },
-  {
-    "objectID": "research.html#interests",
-    "href": "research.html#interests",
-    "title": "Research",
-    "section": "",
-    "text": "My research is in geometric analysis: I study how geometric conditions – namely curvature constraints – on a Riemannian manifold influence analytic properties of differential operators."
-  },
-  {
-    "objectID": "writing.html#expository",
-    "href": "writing.html#expository",
-    "title": "Writing",
-    "section": "Expository",
-    "text": "Expository"
-  },
-  {
-    "objectID": "writing.html#expository-mathematics",
-    "href": "writing.html#expository-mathematics",
-    "title": "Writing",
-    "section": "Expository Mathematics",
-    "text": "Expository Mathematics\nWelcome"
-  },
-  {
-    "objectID": "writing.html#teaching-content",
-    "href": "writing.html#teaching-content",
-    "title": "Writing",
-    "section": "Teaching Content",
-    "text": "Teaching Content"
-  },
-  {
-    "objectID": "writing.html#teaching-reflections",
-    "href": "writing.html#teaching-reflections",
-    "title": "Writing",
-    "section": "Teaching Reflections",
-    "text": "Teaching Reflections"
-  },
-  {
-    "objectID": "writing.html#miscellaneous",
-    "href": "writing.html#miscellaneous",
-    "title": "Writing",
-    "section": "Miscellaneous",
-    "text": "Miscellaneous"
+    "text": "A selection of review materials and quiz content from MATH 2410: Elementary Differential Equations at UConn which I wrote during Spring 2024."
   },
   {
     "objectID": "notes/odes/index.html#quizzes",
@@ -203,24 +147,24 @@
     "text": "Quizzes\nQuiz 1\nQuiz 2\nQuiz 3"
   },
   {
-    "objectID": "teaching.html#calculus-for-business-and-economics",
-    "href": "teaching.html#calculus-for-business-and-economics",
-    "title": "Teaching",
-    "section": "Calculus for Business and Economics",
-    "text": "Calculus for Business and Economics\nFull course notes from MATH 1070 at UConn for which I’ve between instructor of record on three occasions. These are from Spring 2026 in particular. Enjoy the Album of the Week selections!\nExplore the notes\nI also created Data Science Demos using Streamlit, a Python-based website platform. Screenshots from selected demos are provided here because Streamlit sites are not always ‘awake.’\nDemo Screenshots"
+    "objectID": "notes/math2110/gradients.html",
+    "href": "notes/math2110/gradients.html",
+    "title": "Gradients and Directional Derivatives",
+    "section": "",
+    "text": "For a differentiable function (f:^2),\n\\[\n\\nabla f(x,y)\n=\n\\left\\langle f_x(x,y),f_y(x,y)\\right\\rangle.\n\\]\nThe gradient points in the direction of steepest ascent.\n\n\n\n\n\n\nGeometric intuition\n\n\n\n\n\nThe gradient is perpendicular to the level curve through the point. It points toward increasing values of the function."
   },
   {
-    "objectID": "demo1.html",
-    "href": "demo1.html",
-    "title": "Data Science Demo 1",
+    "objectID": "notes/math2110/gradients.html#the-gradient",
+    "href": "notes/math2110/gradients.html#the-gradient",
+    "title": "Gradients and Directional Derivatives",
     "section": "",
-    "text": "Demo 1"
+    "text": "For a differentiable function (f:^2),\n\\[\n\\nabla f(x,y)\n=\n\\left\\langle f_x(x,y),f_y(x,y)\\right\\rangle.\n\\]\nThe gradient points in the direction of steepest ascent.\n\n\n\n\n\n\nGeometric intuition\n\n\n\n\n\nThe gradient is perpendicular to the level curve through the point. It points toward increasing values of the function."
   },
   {
-    "objectID": "demos.html",
-    "href": "demos.html",
-    "title": "Data Science Snippets",
-    "section": "",
-    "text": "These screenshots were taken from Demos 1 and 2 as a quick look into what I put together for Data Science Demos in Calculus for Business and Economics."
+    "objectID": "notes/math2110/gradients.html#example",
+    "href": "notes/math2110/gradients.html#example",
+    "title": "Gradients and Directional Derivatives",
+    "section": "Example",
+    "text": "Example\nLet\n\\[ f(x,y)=x^2+2y^2. \\]\n\n\n\n\n\n\nHint\n\n\n\n\n\nCalculate the two partial derivatives separately.\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe obtain\n\\[\nf_x=2x,\\qquad f_y=4y,\n\\]\nso\n\\[\n\\nabla f(x,y)=\\langle 2x,4y\\rangle.\n\\]\nAt \\((1,2)\\), this becomes\n\\[\n\\nabla f(1,2)=\\langle 2,8\\rangle.\n\\]"
   }
 ]
