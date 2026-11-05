@@ -53,4 +53,6 @@ it doesn't mean we can't use words to explain ourselves! On the contrary,
 **using words to justify nontrivial steps highilights the logical foundation
 for the readers (and writer) of the solution/proof.**
 
+### 2. Be the Right Amount of Relatable
+
 
