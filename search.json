@@ -18,7 +18,7 @@
     "href": "writing.html#teaching-reflections",
     "title": "Writing",
     "section": "Teaching Reflections",
-    "text": "Teaching Reflections"
+    "text": "Teaching Reflections\nReflections Over Time"
   },
   {
     "objectID": "writing.html#miscellaneous",
@@ -56,39 +56,25 @@
     "text": "Explore\n\nCV: My most recent CV.\nResearch: Research interests and publications.\nTeaching: Teaching philosophy, course materials, and interactive mathematical explorations.\nWriting: Expository writing and other projects."
   },
   {
-    "objectID": "posts/first-post.html",
-    "href": "posts/first-post.html",
-    "title": "Pilot",
+    "objectID": "posts/teaching-reflections.html",
+    "href": "posts/teaching-reflections.html",
+    "title": "On Teaching Mathematics",
     "section": "",
-    "text": "This is the beginning of my online collection of writing about mathematics, teaching, and other interests.\nOver time, I hope to use this space to explore mathematical ideas beyond the constraints of a traditional lecture, share teaching experiments, and write about projects that interest me."
+    "text": "One of my cohort members at UConn posed the following question as we were discussing our teaching statements:\nSeemed like a pretty simple question when I first heard it … but no response that I could come up with on the spot felt sufficient. Over time my thoughts on what the overarching goal(s) are (hopefully) be collected here, along with practices aimed at reaching them. Some entries will be from my own stream of consciousness, others will stem from student feedback, and others will follow from discussions with other math educators."
   },
   {
-    "objectID": "teaching.html",
-    "href": "teaching.html",
-    "title": "Teaching",
-    "section": "",
-    "text": "I view teaching and learning as fundamentally human endeavors. My goal is to create a classroom in which students feel comfortable exploring unfamiliar ideas while developing the precision and rigor needed to do mathematics independently.\nI aim to connect abstract mathematical concepts to geometric intuition, concrete examples, and visual representations whenever possible.\nFor a full essay on my instructional approach, here is my teaching philosophy statement."
+    "objectID": "posts/teaching-reflections.html#i.-goals-of-teaching-mathematics",
+    "href": "posts/teaching-reflections.html#i.-goals-of-teaching-mathematics",
+    "title": "On Teaching Mathematics",
+    "section": "I. Goals of Teaching Mathematics",
+    "text": "I. Goals of Teaching Mathematics\n\n1. Give students the tools to be independent analytical thinkers and the means to use them.\nI cannot claim this as my own idea, it came from the same cohort member mentioned above (email me if you need to cite them or something). The thought is this: what will they really need in the real world?\nIn the age of AI it is especially true that computation and rote memorization are less worthwhile than ever before; ChatGPT’s most basic model can correctly answer the majority of undergrad homework assignments and recite definitions or theorems better than I ever could … so what’s the point? There are two answers that come to mind.\n\nKnowing what to ask. Coming up with the right question phrased in the right way requires fundamental understanding beyond memorization.\nHeuristic understanding, following logical arguments. To have an intuitive understanding of what a correct answer looks like and how to get there – or, the ability to validate answers when presented with them – requires mathematical maturity and familiarity."
   },
   {
-    "objectID": "teaching.html#teaching-experience",
-    "href": "teaching.html#teaching-experience",
-    "title": "Teaching",
-    "section": "Teaching experience",
-    "text": "Teaching experience\nMy teaching experience includes calculus, multivariable calculus, and differential equations, both as a teaching assistant and as an instructor of record.\nAs an instructor, I have designed course materials, assignments, and computational demonstrations to help students connect mathematical theory with applications."
-  },
-  {
-    "objectID": "teaching.html#selected-course-materials",
-    "href": "teaching.html#selected-course-materials",
-    "title": "Teaching",
-    "section": "Selected course materials",
-    "text": "Selected course materials\n\nMultivariable Calculus\nSelected notes and activities covering topics such as gradients, directional derivatives, tangent planes, multiple integrals, and vector calculus.\nExplore the notes\n\n\nOrdinary Differential equations\nNotes from MATH 2410 at UConn, Elementary Differential Equations.\nExplore the notes"
-  },
-  {
-    "objectID": "teaching.html#calculus-for-business-and-economics",
-    "href": "teaching.html#calculus-for-business-and-economics",
-    "title": "Teaching",
-    "section": "Calculus for Business and Economics",
-    "text": "Calculus for Business and Economics\nFull course notes from MATH 1070 at UConn for which I’ve between instructor of record on three occasions. These are from Spring 2026 in particular. Enjoy the Album of the Week selections!\nExplore the notes\nI also created Data Science Demos using Streamlit, a Python-based website platform. Screenshots from selected demos are provided here because Streamlit sites are not always ‘awake.’\nDemo Screenshots"
+    "objectID": "posts/teaching-reflections.html#ii.-thoughts-on-how-to-arrive-at-teaching-goals",
+    "href": "posts/teaching-reflections.html#ii.-thoughts-on-how-to-arrive-at-teaching-goals",
+    "title": "On Teaching Mathematics",
+    "section": "II. Thoughts on How to Arrive at Teaching Goals",
+    "text": "II. Thoughts on How to Arrive at Teaching Goals\n\n1. Emphasize that solving a problem should feel like defending a case in court, winning an argument, or telling a story in logic.\nMany students have been shown that math is about pushing numbers and symbols around on the page like stones in curling. Up to a certain point this works, but it’s not a robust methodology. Even though math machinery can be abstract nonsense, it doesn’t mean we can’t use words to explain ourselves! On the contrary, using words to justify nontrivial steps highilights the logical foundation for the readers (and writer) of the solution/proof."
   },
   {
     "objectID": "research.html",
@@ -124,6 +110,41 @@
     "title": "Research",
     "section": "Future directions",
     "text": "Future directions\n\nPlease see my research statement."
+  },
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "I view teaching and learning as fundamentally human endeavors. My goal is to create a classroom in which students feel comfortable exploring unfamiliar ideas while developing the precision and rigor needed to do mathematics independently.\nI aim to connect abstract mathematical concepts to geometric intuition, concrete examples, and visual representations whenever possible.\nFor a full essay on my instructional approach, here is my teaching philosophy statement."
+  },
+  {
+    "objectID": "teaching.html#teaching-experience",
+    "href": "teaching.html#teaching-experience",
+    "title": "Teaching",
+    "section": "Teaching experience",
+    "text": "Teaching experience\nMy teaching experience includes calculus, multivariable calculus, and differential equations, both as a teaching assistant and as an instructor of record.\nAs an instructor, I have designed course materials, assignments, and computational demonstrations to help students connect mathematical theory with applications."
+  },
+  {
+    "objectID": "teaching.html#selected-course-materials",
+    "href": "teaching.html#selected-course-materials",
+    "title": "Teaching",
+    "section": "Selected course materials",
+    "text": "Selected course materials\n\nMultivariable Calculus\nSelected notes and activities covering topics such as gradients, directional derivatives, tangent planes, multiple integrals, and vector calculus.\nExplore the notes\n\n\nOrdinary Differential equations\nNotes from MATH 2410 at UConn, Elementary Differential Equations.\nExplore the notes"
+  },
+  {
+    "objectID": "teaching.html#calculus-for-business-and-economics",
+    "href": "teaching.html#calculus-for-business-and-economics",
+    "title": "Teaching",
+    "section": "Calculus for Business and Economics",
+    "text": "Calculus for Business and Economics\nFull course notes from MATH 1070 at UConn for which I’ve between instructor of record on three occasions. These are from Spring 2026 in particular. Enjoy the Album of the Week selections!\nExplore the notes\nI also created Data Science Demos using Streamlit, a Python-based website platform. Screenshots from selected demos are provided here because Streamlit sites are not always ‘awake.’\nDemo Screenshots"
+  },
+  {
+    "objectID": "posts/first-post.html",
+    "href": "posts/first-post.html",
+    "title": "Pilot",
+    "section": "",
+    "text": "This is the beginning of my collection of writing about mathematics, teaching, and other interests.\nAs of today I’m not in a headspace to produce highly technical content, so please bear with some rambling (if any living person ever sees this)."
   },
   {
     "objectID": "demos.html",
