@@ -1,0 +1,56 @@
+---
+title: "On Teaching Mathematics"
+subtitle: "Goals, philosophy, and practice"
+date: "2026-11-04"
+---
+
+One of my cohort members at UConn posed the following question 
+as we were discussing our teaching statements:
+
+> What is the fundamental goal of teaching mathematics?
+
+Seemed like a pretty simple question when I first heard it ... but no
+response that I could come up with on the spot felt sufficient. 
+Over time my thoughts on what the overarching goal(s) are (hopefully)
+be collected here, along with practices aimed at reaching them. Some entries will be from my
+own stream of consciousness, others will stem from student feedback,
+and others will follow from discussions with other math educators.
+
+## I. Goals of Teaching Mathematics
+
+### 1. Give students the tools to be independent analytical thinkers and the means to use them.
+
+I cannot claim this as my own idea, it came from the same cohort member mentioned above (email me if you
+need to cite them or something). The thought is this: what will they *really* need
+in the real world? 
+
+In the age of AI it is especially true that
+computation and rote memorization are less worthwhile than ever
+before; ChatGPT's most basic model can correctly answer the majority
+of undergrad homework assignments and recite definitions or theorems
+better than I ever could ... so what's the point? There are two answers
+that come to mind.
+
+- **Knowing what to ask.** Coming up with the right
+question phrased in the right way requires fundamental understanding 
+beyond memorization. 
+
+- **Heuristic understanding, following logical arguments.** To have an intuitive understanding of
+what a correct answer looks like and how to get there -- or, the ability to
+*validate* answers when presented with them -- requires mathematical maturity and familiarity.
+
+
+
+## II. Thoughts on How to Arrive at Teaching Goals
+
+### 1. Emphasize that solving a problem should feel like defending a case in court, winning an argument, or telling a story in logic.
+
+Many students have been shown that math is about pushing numbers and symbols around
+on the page like stones in [curling](https://en.wikipedia.org/wiki/Curling#Curling_stone). Up to 
+a certain point this works, but it's not a robust methodology. Even though
+math machinery can be [abstract nonsense](https://en.wikipedia.org/wiki/Abstract_nonsense), 
+it doesn't mean we can't use words to explain ourselves! On the contrary,
+**using words to justify nontrivial steps highilights the logical foundation
+for the readers (and writer) of the solution/proof.**
+
+

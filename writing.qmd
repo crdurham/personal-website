@@ -12,5 +12,6 @@ and other miscellany. Will be added over time.
 [Welcome](posts/first-post.qmd) 
 
 ## Teaching Reflections
+[Reflections Over Time](posts/teaching-reflections.qmd)
 
 ## Miscellaneous

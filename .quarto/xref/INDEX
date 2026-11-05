@@ -34,5 +34,8 @@
   },
   "demos.qmd": {
     "demos.html": "cef90ce8"
+  },
+  "posts/teaching-reflections.qmd": {
+    "teaching-reflections.html": "7a6cf43b"
   }
 }
