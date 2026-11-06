@@ -53,6 +53,43 @@ it doesn't mean we can't use words to explain ourselves! On the contrary,
 **using words to justify nontrivial steps highilights the logical foundation
 for the readers (and writer) of the solution/proof.**
 
-### 2. Be the Right Amount of Relatable
+### 2. Be Willing to Zoom Out
+
+The meaning behind this phrase is twofold for me.
+
+<details>
+<summary><strong>See the mathematical forest through the trees.</strong></summary>
+This is what
+conceptual understanding is all about. We're trying to create a 
+mental map that guides our arguments; to build such a thing we
+have to make note of every branch and boulder, and we do this through
+many examples. It would be untenable to sift through this exhaustive logbook (pun
+intended) all the time, so a huge part of learning is
+figuring out what the important landmarks are. 
+</details>
+
+<details>
+<summary><strong>Let students know you relate to them on a human level!</strong></summary>
+ This gets an exclamation because it's 
+often forgotten when we're laser focused on the concepts we want to help them understand; life outside
+of mathematics can get lost when we dive down the rabbit hole. This can be effective with some audiences, 
+wading with them into the depths of this fantasy world for an entire lecture (particularly majors or those who are acclimated
+to being absorbed in abstraction), but many people appreciate coming up for air now and then. Tell a story or
+a joke, make a song reference (my personal favorite), just something to let people
+know that they can relax. Of course, don't waste a bunch of time
+doing this or break the rhythm of your explanation, and be authentic. An
+environment which lets students feel calm is more conducive to learning.
+</details>
+
+### 3. Don't Undervalue Bookkeeping
+
+Organization plays a role in problem solving that 
+often goes unnoticed. This is true in terms of identifying
+hypotheses and using efficient data structures
+throughout an argument, but also writing in a physically
+organized fashion. As instructors we harp on readable answers because mathematics
+is about the communication of ideas (rightfully so), but writing clearly
+can also help the student find their way to a correct proof or numeric answer.
+
 
 
