@@ -1,0 +1,1529 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Honors Calculus III — Interactive Activity</title>
+<!-- MathJax: lets you write LaTeX using \( ... \) inline and \[ ... \] for display equations. -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      // Avoid trying to interpret the slide-navigation UI as mathematics.
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  :root {
+    --ink: #172033;
+    --muted: #647084;
+    --paper: #ffffff;
+    --canvas: #eef1f6;
+    --accent: #3157a7;
+    --accent-light: #e9efff;
+    --line: #dce2ec;
+    --warm: #f8f4ea;
+    --radius: 18px;
+    --shadow: 0 18px 50px rgba(25, 38, 62, .12);
+  }
+ 
+  .reveal-panel[hidden] {
+  display: none;
+}
+
+.reveal-toggle {
+  margin: 0.75rem 0 1rem;
+}
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; }
+  body {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  button { font: inherit; }
+  .app { min-height: 100vh; display: flex; flex-direction: column; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    padding: .8rem clamp(1rem, 3vw, 2rem); color: var(--muted); font-size: .88rem;
+  }
+  .brand { color: var(--ink); font-weight: 750; letter-spacing: .01em; }
+  .top-actions { display: flex; gap: .5rem; align-items: center; }
+  .small-button, .nav-button {
+    border: 1px solid var(--line); background: white; color: var(--ink);
+    border-radius: 999px; padding: .55rem .9rem; cursor: pointer;
+  }
+  .small-button:hover, .nav-button:hover { border-color: var(--accent); }
+  .progress-track { height: 4px; background: #dfe4ed; }
+  .progress-bar { height: 100%; width: 0; background: var(--accent); transition: width .22s ease; }
+  main { width: min(1120px, calc(100% - 2rem)); margin: clamp(1rem, 4vh, 3rem) auto 1.5rem; flex: 1; }
+  .slide {
+    display: none; min-height: min(70vh, 690px); background: var(--paper);
+    border: 1px solid rgba(30, 45, 70, .06); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: clamp(1.4rem, 5vw, 4.5rem);
+    animation: appear .2s ease-out;
+  }
+  .example {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 8px;
+  margin: 1.25rem 0;
+  overflow: hidden;
+}
+
+.example-title {
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 0.75rem 1rem 0.25rem;
+}
+
+.example-body {
+  padding: 0.25rem 1rem 1rem;
+}
+  .slide.active { display: flex; flex-direction: column; }
+  @keyframes appear { from { opacity: .65; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .eyebrow {
+    color: var(--accent); text-transform: uppercase; letter-spacing: .13em;
+    font-size: .76rem; font-weight: 800; margin-bottom: 1rem;
+  }
+  h1, h2, h3 { line-height: 1.1; letter-spacing: -.035em; margin: 0; }
+  h1 { font-size: clamp(2.5rem, 6vw, 5rem); max-width: 13ch; }
+  h2 { font-size: clamp(2rem, 4vw, 3.25rem); margin-bottom: 1.1rem; }
+  h3 { font-size: 1.2rem; margin-bottom: .7rem; letter-spacing: -.015em; }
+  p, li { font-size: clamp(1rem, 1.5vw, 1.2rem); line-height: 1.65; }
+  p { max-width: 75ch; }
+  .subtitle { font-size: clamp(1.1rem, 2vw, 1.45rem); color: var(--muted); margin-top: 1.2rem; }
+  .title-slide { justify-content: center; }
+  .title-slide .eyebrow { margin-bottom: 1.5rem; }
+  .title-meta { margin-top: 3rem; color: var(--muted); font-size: .95rem; line-height: 1.8; }
+  .rule { width: 5rem; height: 5px; background: var(--accent); border-radius: 5px; margin: 1.5rem 0; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+  .panel {
+    background: #f7f8fb; border: 1px solid var(--line); border-radius: 14px;
+    padding: clamp(1rem, 2vw, 1.5rem); min-width: 0;
+  }
+  .panel p:last-child { margin-bottom: 0; }
+  .placeholder {
+    border: 2px dashed #bdc8dc; border-radius: 14px; min-height: 180px;
+    display: grid; place-items: center; text-align: center; padding: 1.5rem;
+    color: var(--muted); background: #fafbfe;
+  }
+  .placeholder strong { display: block; color: var(--ink); margin-bottom: .35rem; }
+  .callout {
+    border-left: 4px solid var(--accent); background: var(--accent-light);
+    padding: 1rem 1.2rem; border-radius: 0 12px 12px 0; margin: 1.2rem 0;
+  }
+  .callout p { margin: 0; }
+  .prompt {
+    background: var(--warm); border: 1px solid #e9dfc9; border-radius: 14px;
+    padding: 1.2rem 1.4rem; margin-top: 1.2rem;
+  }
+  .prompt-label { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 800; color: #7b6433; }
+  details { margin-top: 1rem; border: 1px solid var(--line); border-radius: 12px; padding: .85rem 1rem; }
+  summary { cursor: pointer; font-weight: 700; }
+  .reveal-content { color: var(--muted); padding-top: .4rem; }
+  .reveal-content p { margin-bottom: .4rem; }
+  .slide-footer { margin-top: auto; padding-top: 2rem; display: flex; justify-content: space-between; gap: 1rem; color: var(--muted); font-size: .85rem; }
+  .controls {
+    display: flex; align-items: center; justify-content: center; gap: .8rem;
+    padding: 0 1rem 1.2rem;
+  }
+  .nav-button { min-width: 112px; padding: .75rem 1.1rem; font-weight: 700; }
+  .nav-button.primary { background: var(--accent); color: white; border-color: var(--accent); }
+  .nav-button:disabled { opacity: .35; cursor: not-allowed; }
+  .counter { color: var(--muted); font-variant-numeric: tabular-nums; min-width: 5rem; text-align: center; }
+  .keyhint { text-align: center; padding: 0 1rem 1rem; color: #7a8495; font-size: .78rem; }
+  body.presentation .topbar, body.presentation .keyhint { display: none; }
+
+  body.presentation main {
+  width: min(1600px, calc(100% - 1rem));
+  height: calc(100vh - 4rem);
+  margin: .5rem auto;
+}
+
+body.presentation .slide {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+
+  body.presentation .controls { padding-bottom: .5rem; }
+  @media (max-width: 700px) {
+    .grid { grid-template-columns: 1fr; }
+    .topbar { align-items: flex-start; }
+    .brand { max-width: 13ch; }
+    .slide { min-height: 68vh; }
+    .nav-button { min-width: 0; }
+    .slide-footer { flex-direction: column; }
+  }
+  .fragment {
+  visibility: hidden;
+  }
+
+  .fragment.revealed {
+  visibility: visible;
+  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">MATH 2110 · Honors Activity</div>
+    <div class="top-actions">
+      <span id="section-label">Getting started</span>
+      <button class="small-button" id="presentation-toggle" type="button" aria-pressed="false">Presentation view</button>
+    </div>
+  </header>
+  <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+
+  <main id="deck" aria-live="polite">
+    <section class="slide active title-slide" data-section="The Arc Length Functional">
+      <div class="eyebrow">MATH 2110 · Honors Activity 3</div>
+      <h1>The Arc Length Functional</h1>
+      <div class="rule"></div>
+      <p class="subtitle"> An Intro to Calculus of Variations </p>
+      <div class="title-meta">
+        <div> Section 128D</div>
+        <div> Dedicated to AVB </div>
+      </div>
+      <div class="slide-footer"><span></span><span></span></div>
+    </section>
+
+    <section class="slide" data-section="Introduction">
+      <div class="eyebrow">01 · Intro</div>
+      
+      <div class="panel">
+        <h2>Goals:</h2>
+        <ul>
+          <li>Given two points \(P\) and \(Q\) in space, view the problem of finding the
+            shortest path between them as <strong>optimization of a functional</strong>.</li>
+
+          <li>Develop intuition for what a <strong>variation</strong> is
+            through directional derivatives.</li>
+          
+          <li>Show that the shortest path between two points in \(\mathbb{R}^3\)
+            is a straight line.</li>
+
+          <li>Explore how changing the underlying geometry changes arc
+            length minimizers, using the cylinder as an example.</li>
+        </ul>
+      </div>
+
+
+      <details>
+        <summary>Some Notation</summary>
+        <div class="reveal-content">
+          <ul>
+            <li>\(\gamma\): lowercase Greek letter gamma. Typically represents a curve.</li>
+            <li>\(\varepsilon\): lowercase Greek letter epsilon. Typically represents a (small) real number.</li>
+            <li>\(\eta\): lowercase Greek letter eta. For us, represents a particular kind of vector field.</li>
+            <li>\(\frac{d}{dx}\bigg|_{x=0}f(x)\): differentiate with respect to \(x\), then evaluate at \(x=0\).
+              E.g. \(\frac{d}{dx}\bigg|_{x=0}(x^2-2x+1)=(2x-2)\bigg|_{x=0}=-2.\)
+            </li>
+          </ul>
+        </div>
+      </details>
+      <div class="slide-footer"><span></span><span> </span></div>
+    </section>
+
+
+<section class="slide" data-section="Calculus: Motivational?">
+  <div class="eyebrow">02 · Background and Intuition</div>
+  <h2>Motivation from Multivariable: The Second Derivative Test</h2>
+  <div class="panel">
+    <strong><u>Second Derivative Test</u></strong>: Suppose \(f:\mathbb{R}^2\to\mathbb{R}\)
+    has continuous second partials near \((x_0,y_0)\). If \(\nabla f(x_0,y_0)=\vec{0}\),
+    \(f_{xx}(x_0,y_0)>0\), and \(D(x_0,y_0)=\begin{vmatrix}f_{xx}(x_0,y_0)&f_{xy}(x_0,y_0)\\f_{yx}(x_0,y_0)&f_{yy}(x_0,y_0)\end{vmatrix}>0\),
+    then \(f(x,y)\) has a local minimum at \((x_0,y_0)\).
+  </div>
+  <div class="example">
+    <div class="example-title">Example</div>
+    <div class="example-body">
+    <p>Use the Second Derivative Test to show \(f(x,y)=x^2+y^2\) has a local
+      minimum at \((0,0)\).
+    </p>
+  </div>
+</div>
+<details>
+  <summary>Solution</summary>
+  <div class="reveal-content">
+    <p>
+      First, we find <strong>critical points</strong>:
+      \[\nabla f(x,y)=\left<2x,2y \right>=\left<0,0\right>\implies (x,y)=(0,0).\]
+
+      We find \(f_{xx}(x,y)=f_{yy}(x,y)=2>0\), \(f_{xy}(x,y)=f_{yx}(x,y)=0\),
+      and then
+      \[D(0,0)=\begin{vmatrix}2&0\\0&2\end{vmatrix}=4>0.\]
+      By the Second Derivative Test, \(f(x,y)=x^2+y^2\) has a local minimum at \(0,0\).
+    </p>
+  </div>
+</details>
+</section>
+
+
+<section class="slide" data-section="All the Single (Variable) Ladies">
+  <div class="eyebrow">03 · A Different Viewpoint</div>
+  <h2>Second Derivative Test via Variation</h2>
+  <div class="panel">
+    <strong><u>Idea</u>:</strong> 
+
+    Can we view the Second Derivative Test in
+    a single-variable light?
+  </div>
+  <details>
+    <summary>Development 1: Define \(g_\vec{v}(\varepsilon)\)</summary>
+    <div class="reveal-content">
+      Suppose \(\vec{x}=(x_0,y_0)\) is a candidate location for a minimum of \(f(x,y)\).
+      Let \(\vec{v}=\left< a,b\right>\) be a fixed unit vector, let \(\varepsilon\) be a real
+      number. Define
+      \[\boxed{g_{\vec{v}}(\varepsilon) = f(\vec{x}+\varepsilon \vec{v})=f(x_0+\varepsilon a, y_0+\varepsilon b)}.\]
+
+      <strong>The function \(g_{\vec{v}}(\varepsilon)\) measures how \(f\) changes along
+        the line with direction \(\vec{v}\) that passes through \(\vec{x}\).</strong>
+        The image of \(g_{\vec{v}}(\varepsilon)\) is the curve obtained by
+        intersecting the surface \(z=f(x,y)\) with the vertical plane above \(\vec{x}+\varepsilon\vec{v}\).
+    </div>
+  </details>
+
+  <details>
+    <summary>Development 2: Differentiate \(g_\vec{v}(\varepsilon)\)</summary>
+    <div class="reveal-content">
+      \[g_{\vec{v}}'(\varepsilon)=\lim_{h\to 0}\frac{f(\vec{x}+(\varepsilon+h) \vec{v})-f(\vec{x}+\varepsilon\vec{v})}{h}=D_{\vec{v}}f(\vec{x}+\varepsilon\vec{v})\]
+      \[\implies \boxed{g_{\vec{v}}'(\varepsilon)=\nabla f(\vec{x}+\varepsilon\vec{v})\cdot \vec{v}}.\]
+
+      Can also take the second derivative. By above, \(g_{\vec{v}}'(\varepsilon)=af_x(\vec{x}+\varepsilon \vec{v})+bf_y(\vec{x}+\varepsilon \vec{v})\), so
+      (eventually omitting the input \(\vec{x}+\varepsilon\vec{v}\))
+
+      \[g_\vec{v}''(\varepsilon)=a(\nabla f_x(\vec{x}+\varepsilon \vec{v})\cdot \vec{v})+b(\nabla f_y(\vec{x}+\varepsilon \vec{v})\cdot \vec{v})\]
+      \[=a(af_{xx}+bf_{xy})+b(af_{yx}+bf_{yy})=a^2f_{xx}+2abf_{xy}+b^2f_{yy}\]
+      \[=\begin{bmatrix}a&b\end{bmatrix}\underbrace{\begin{bmatrix}f_{xx}&f_{xy}\\f_{yx}&f_{yy}\end{bmatrix}}_{\text{Hessian}}\begin{bmatrix}a\\b\end{bmatrix}=\vec{v}^TH\vec{v}\]
+      \[\implies \boxed{g_{\vec{v}}''(\varepsilon)=\vec{v}^TH(\vec{x}+\varepsilon\vec{v})\vec{v}}.\]
+    </div>
+  </details>
+
+  
+  <div class="slide-footer"><span></span><span> </span></div>
+</section>
+
+
+<section class="slide" data-section="Visualizing Perturbation Function">
+  <div class="eyebrow">04 · Motivational Calculus</div>
+  <h2>Visualizing \(g_{\vec{v}}(\varepsilon)\)</h2>
+
+  <div style="
+    width: 100%;
+    max-width: 1000px;
+    height: 560px;
+    margin: 0 auto;
+  ">
+    
+
+    <div style="width: 100%; max-width: 1000px; margin: 0 auto;">
+      <iframe
+        src="https://www.geogebra.org/material/iframe/id/acrrqcnf/width/1000/height/650/border/888888/rc/true/ai/false/sdz/true/smb/false/stb/false/stbh/false/sri/true/szb/true"
+        width="100%"
+        height="650"
+        style="border: 0; border-radius: 8px;"
+        scrolling="no"
+        allowfullscreen>
+      </iframe>
+    </div>
+    
+
+  </div>
+</section>
+
+
+<section class="slide" data-section="Scoff at Conventional Calculus">
+  <div class="eyebrow">05 · Calculus Reborn</div>
+  <h2>Second Derivative Test (Reprise)</h2>
+  <div class="panel">
+    <strong><u>Second Derivative Test</u></strong>: Suppose \(f:\mathbb{R}^2\to\mathbb{R}\)
+    has continuous second partials near \(\vec{x}=(x_0,y_0)\) and define \(g_{\vec{v}}(\varepsilon)=f(\vec{x}+\varepsilon \vec{v})\).
+    If \(g_{\vec{v}}'(0)=0\) and \(g_{\vec{v}}''(0)>0\) for all unit vectors \(\vec{v}\), 
+    then \(f\) has a (strict) local minimum at \((x_0,y_0)\).
+  </div>
+  <details>
+    <summary>Why is this reasonable?</summary>
+    <div class="reveal-content">
+      From Development 2, \(g_{\vec{v}}'(0)=0\) for all \(\vec{v}\) means
+      \[\nabla f(x_0,y_0)\cdot \vec{v}=0\] for all \(\vec{v}\). It follows that
+      \(\nabla f(x_0,y_0)=\vec{0}\), so \((x_0,y_0)\) is a critical point.
+      <p>
+
+      </p>
+      We also saw \(g_{\vec{v}}''(0)=\vec{v}^{T}H(x_0,y_0)\vec{v}\). If \(\vec{v}=\left< a,b\right>\), then positivity
+      of this quantity reads (by completing the square)
+      \[0 < a^2f_{xx}+2abf_{xy}+b^2f_{yy}=\mathbf{\textcolor{purple}{f_{xx}}}\left(a+\frac{f_{xy}}{f_{xx}}b\right)^2+\left(\frac{\mathbf{\textcolor{purple}{f_{xx}f_{yy}-(f_{xy})^2}}}{f_{xx}}\right)b^2.\]
+
+      This <em>relates</em> \(g_{\vec{v}}''(0)>0\) to \(f_{xx}(x_0,y_0),\, D(x_0,y_0)>0\).
+    </div>
+  </details>
+</section>
+
+    <!-- SLIDE 4: Main mathematical content. -->
+    <section class="slide" data-section="We Can't Derive">
+      <div class="eyebrow">06 · Toward Arc Length Functional: Setup</div>
+      <h2>Functional Fitness</h2>
+      <div class="panel">
+        Consider the points \(P=(1,0,0)\) and \(Q=(-1,0,1)\) in \(\mathbb{R}^3\).
+        We are tasked with finding the shortest path between \(P\) and \(Q\). 
+        <strong>Explore how to approach this as an optimization problem through 
+          the following questions.
+        </strong> 
+        <ul>
+          <li><u>Question 1</u>: Describe the function \(L\) we want to minimize by
+             specifying its (1) inputs, (2) outputs, and (3) equation.</li>
+          <details>
+            <summary>Solution 1</summary>
+            <div class="reveal-content">
+              <p>
+                (1) \(L\) takes <strong>curves as inputs</strong>, where  \(\gamma:[a,b]\to \mathbb{R}^3\),
+                \(\gamma(a)=P\), and \(\gamma(b)=Q\). A function whose inputs are functions is called a <strong>functional</strong>.
+              </p>
+              <p>
+                (2) \(L[\gamma]=\)length of \(\gamma\),
+                meaning <strong>\(L\) outputs real numbers</strong>.
+              </p>
+              <p>
+                (3) \(\displaystyle{L[\gamma]=\int_{\gamma} 1\,ds=\int_a^b|\gamma'(t)|\,dt}\). This is the
+                <strong>arc length functional</strong>.
+              </p>
+            </div>
+          </details>
+            <p>
+
+
+            </p>
+          <li><u>Question 2</u>: How would you (roughly) take the directional derivative of \(L[\gamma]\)?
+            (Hint: Recall \(D_{\vec{v}}f(x_0,y_0)=g_{\vec{v}}'(0)\).)</li>
+          <details>
+            <summary>Solution 2</summary>
+            <div class="reveal-content">
+              <p>
+                Let's keep with the idea we've been using and look at perturbations. Here our
+                inputs are curves \(\gamma:[a,b]\to \mathbb{R}^3\) which connect \(P\)
+                to \(Q\); symbolically, we can deform to
+                \[\gamma\mapsto \gamma+\varepsilon\eta\]
+                
+                where \(\varepsilon\) is a real number still, but \(\eta\) requires some thought
+                or explanation. For now, just note \(\eta\) plays the role of the direction vector
+                \(\vec{v}\) from earlier slides. Then, define the single-variable function
+                \[G_{\eta}(\varepsilon)=L[\gamma+\varepsilon\eta].\]
+              </p>
+              <p>
+                Finally, we can compute ordinary derivatives!
+                 \(G'_{\eta}(0)=\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}L[\gamma+\varepsilon\eta],\;\;G''_{\eta}(0)=\frac{d^2}{d\varepsilon^2}\bigg|_{\varepsilon=0}L[\gamma+\varepsilon\eta]\).
+              </p>
+       
+            </div>
+          </details>
+        </ul>
+      </div>
+      
+      <div class="slide-footer"><span></span><span> </span></div>
+    </section>
+
+
+    <section class="slide" data-section="Who's eta?">
+      <div class="eyebrow">07 · Toward First Example: Variational Vector Field Visual</div>
+      <h2>What's Up with \(\eta\)?</h2>
+      <div class="panel">
+        <p>
+          \(\eta:[a,b]\to \mathbb{R}^3\) is a <strong>smooth vector field along \(\gamma\)</strong>
+          which satisfies \(\eta(a)=\eta(b)=\vec{0}\) so that the endpoints of \(\gamma\) are fixed:
+          \(\gamma(a)+\varepsilon\eta(a)=P\) and \(\gamma(b)+\varepsilon\eta(b)=Q\).
+        </p>
+      </div>
+      <iframe
+          src="https://www.geogebra.org/material/iframe/id/tfapnuya/width/1000/height/560/border/888888/rc/true/ai/false/sdz/true/smb/false/stb/false/stbh/false/sri/true/szb/true"
+          width="100%"
+          height="560"
+          style="border: 0; border-radius: 8px;"
+          scrolling="no"
+          allowfullscreen>
+        </iframe>
+    </section>
+
+
+    <section class="slide" data-section="Calculus of Variations">
+      <div class="eyebrow">08 · Toward First Example: Summary</div>
+      <h2>Feeling Perturbed</h2>
+      <div class="panel">
+        <p><strong>Calculus Version</strong>: Fix \(\vec{x}=(x_0,y_0)\). Define
+          \(g_{\vec{v}}(\varepsilon)=f(\vec{x}+\varepsilon \vec{v})\). Then
+          \[
+            \boxed{g_{\vec{v}}'(0)=
+            \left.\frac{d}{d\varepsilon}\right|_{\varepsilon=0}f(\vec{x}+\varepsilon \vec{v})
+            =\nabla f(\vec{x})\cdot \vec{v}}
+          \]
+          and 
+          \[
+            \boxed{g_{\vec{v}}''(0)=\vec{v}^{T}H(\vec{x})\vec{v}}
+          \]
+          give information relating to whether \(f\) has an extremum at \(\vec{x}\).
+        </p>
+    
+        <p><strong>Variational Version</strong>: Fix a curve
+          \(\gamma:[a,b]\to\mathbb R^3\) connecting \(P\) to \(Q\).
+          Let \(\eta:[a,b]\to\mathbb R^3\) satisfy
+          \(\eta(a)=\eta(b)=\vec 0\). Define
+          \[
+            G_{\eta}(\varepsilon)=L[\gamma+\varepsilon\eta].
+          \]
+          Then
+          \[
+            \boxed{G_{\eta}'(0)=
+            \left.\frac{d}{d\varepsilon}\right|_{\varepsilon=0}
+            L[\gamma+\varepsilon\eta]}\;\;\text{and}\;\;\boxed{G_{\eta}''(0)=\frac{d^2}{d\varepsilon^2}\bigg|_{\varepsilon=0}L[\gamma+\varepsilon\eta]}
+          \]
+        </p>
+        give information relating to whether \(L\) has an extremum at \(\gamma\). These
+        are called the <strong>first variation</strong> and <strong>second variation</strong> respectively.
+        In particular: \(G_\eta'(0)=0\) and \(G_\eta''(0)>0\) for all nonzero \(\eta\) implies (roughly, ignoring some technical details)
+        \(L[\gamma]\) is a local minimum of the functional \(L\).
+      </div>
+    </section>
+    
+
+
+<section class="slide" data-section="Energizer Bunny">
+    <div class="eyebrow">09 · Technical Simplifications</div>
+    <h2>A Convenient Alternative: Energy Functional</h2>
+    <div class="panel">
+      <ul>
+        <li>Given \(\gamma_0:[0,1]\to\mathbb{R}^3\) with \(\gamma_0(0)=P\), 
+          \(\gamma_0(1)=Q\), and \(|\gamma_0'(t)|>0\) for all \(t\), we can find
+          \[\gamma:[0,1]\to\mathbb{R}^3,\;\;|\gamma'(t)|=C,\]
+  
+          with the same image as \(\gamma_0\). <strong>We can always
+            reparametrize to have constant speed.</strong></li>
+
+        <li>If we define the <strong>energy functional</strong> on all sufficiently smooth fixed-endpoint
+          curves \(\gamma:[0,1]\to \mathbb{R}^3\) by
+          \[E[\gamma]=\frac{1}{2}\int_0^1 |\gamma'(t)|^2\,dt,\]
+          then minimizing energy gives us the same geometric paths as
+  minimizing length: <strong>energy-minimizing curves have constant speed,
+  and their images are length-minimizing</strong>.
+        </li>
+      </ul>
+    </div>
+    <details>
+      <summary>Why use \(E\)?</summary>
+      <div class="reveal-content">
+       
+        It's easier to differentiate
+        \[
+          |\gamma'(t)+\varepsilon\eta'(t)|^2
+        \]
+        than
+        \[
+          |\gamma'(t)+\varepsilon\eta'(t)|
+          =\sqrt{(\gamma'(t)+\varepsilon\eta'(t))
+          \cdot(\gamma'(t)+\varepsilon\eta'(t))}.
+        \]
+        No square root!
+
+            <p>
+
+              That, and constant-speed parametrizations are nice too.
+            </p>
+        
+      </div>
+    </details>
+
+    <div class="example">
+      <div class="example-title">Final Technical Fact:</div>
+      <div class="example-body">
+        For \(F(\varepsilon,t)\) sufficiently smooth, we can differentiate under the integral sign:
+      <p>
+        \[\frac{d}{d\varepsilon}\left(\int_0^1 F(\varepsilon, t)\,dt\right)=\int_0^1\left(\frac{\partial}{\partial\varepsilon}F(\varepsilon,t)\right)dt.\]
+      </p>
+    
+    </div>
+    </div>
+  </section>
+  
+
+
+
+<section class="slide" data-section="First Variation in Flat Space">
+  <div class="eyebrow">10 · Cut Straight to the Point</div>
+  <h2>First Variation of Energy in \(\mathbb{R}^3\)</h2>
+
+<p>
+  We are finally in a position to compute the first variation of a functional. Despite
+  all the scary looking terminology and notation, it's ultimately the kind of derivative
+  we took in Math 1131.
+</p>
+
+
+<details class="panel">
+  <summary>Calculation of \(\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]\)</summary>
+  <div class="reveal-content">
+    Throughout, \(\gamma(t)=\langle x(t),y(t),z(t)\rangle\); there are no restrictions on the component functions a priori
+    because the path can go wherever in \(\mathbb{R}^3\). Note \(E[\gamma+\varepsilon\eta]=\frac{1}{2}\int_0^1|(\gamma+\varepsilon\eta)'|^2\,dt=\frac{1}{2}\int_0^1|\gamma'+\varepsilon\eta'|^2\,dt\).
+    Expanding the integrand,
+
+    \[|\gamma'+\varepsilon\eta'|^2=(\gamma'+\varepsilon\eta')\cdot(\gamma'+\varepsilon\eta')=|\gamma'|^2+2\varepsilon(\gamma'\cdot\eta')+\varepsilon^2|\eta'|^2\implies \textcolor{purple}{\frac{\partial}{\partial\varepsilon}(|\gamma'+\varepsilon\eta'|^2)}=\textcolor{purple}{2(\gamma'\cdot\eta')+2\varepsilon|\eta'|^2}.\]
+
+    This shows
+    \[\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]=\frac{d}{d\varepsilon}\left(\frac{1}{2}\int_0^1|\gamma'+\varepsilon\eta'|^2\,dt\right)\bigg|_{\varepsilon=0}=\frac{1}{2}\int_0^1\textcolor{purple}{\frac{\partial}{\partial\varepsilon}(|\gamma'+\varepsilon\eta'|^2)}\,dt\bigg|_{\varepsilon=0}=\frac{1}{2}\int_0^1(\textcolor{purple}{2(\gamma'\cdot\eta')+2\varepsilon|\eta'|^2})\,dt\bigg|_{\varepsilon=0},\]
+
+    so
+    \[\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]=\int_0^1 \gamma'\cdot \eta'\,dt.\]
+
+    We have more information about \(\eta\) than \(\eta'\)...use integration by parts:
+    \[\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]=\int_0^1 \gamma'\cdot \eta'\,dt=\underbrace{\gamma'(t)\eta(t)\bigg|_0^1}_{\textcolor{blue}{=0}}-\int_0^1\gamma''\cdot \eta\,dt\]
+    \[\therefore\;\;\boxed{\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]=-\int_0^1\gamma''\cdot \eta\,dt}.\]
+
+    <strong>What does this say about critical points of the energy functional?</strong>
+  </div>
+</details>
+
+
+
+  <div class="slide-footer"><span></span><span> </span></div>
+</section>
+
+
+<section class="slide" data-section="Thinking Critical-ly">
+  <div class="eyebrow">11 · Candidates for Energy Minimizers</div>
+  <h2>What Does \(\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]\) Tell Us?</h2>
+
+  <div class="panel">
+    <strong>Question</strong>: If \(\gamma\) is a critical point of \(E\), i.e. \(\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]=-\int_0^1\gamma''\cdot \eta\,dt=0\) <em>for all</em> admissible \(\eta\) which are not identically \(\vec{0}\), what can we say about \(\gamma\)?
+  </div>
+
+  <details>
+    <summary>Solution</summary>
+    <div class="reveal-content">
+      It must be that \(\gamma\) satisfies the ordinary differential equation 
+      \[\boxed{\gamma''(t)=\vec{0}}.\] 
+      
+
+      <details>
+        <summary>How to justify \(\gamma''(t)=0\)?</summary>
+          <div class="reveal-content">
+            Suppose \(|\gamma''(t)|>0\) for \(0\leq t_1<  t < t_2\leq 1\); then we can construct
+            \(\eta\) such that \(\gamma''(t)\cdot \eta(t) > 0 \) for \(t_1<  t < t_2\) and \(\eta(t)=\vec{0}\) otherwise. 
+            But then, 
+            \[\int_0^1\gamma''\cdot \eta\,dt=\int_{t_1}^{t_2}\gamma''\cdot \eta\,dt >0,\]
+            which is a contradiction.
+          </div>
+      </details>
+<p>
+
+</p>
+      This means in terms of components that \(\gamma(t)=\left< x(t),y(t)\right>\) satisfies
+       \[\left< x''(t),y''(t),z''(t)\right>=\left< 0,0,0 \right>.\]
+
+       Then, taking repeated antiderivatives...
+       \[x''(t)=0\implies x'(t)=A_1\implies x(t)=A_1t+A_2,\]
+
+       \[y''(t)=0\implies y'(t)=B_1\implies y(t)=B_1t+B_2.\]
+
+       \[z''(t)=0\implies z'(t)=C_1\implies z(t)=C_1t+C_2.\]
+
+       <strong>That is, \(\gamma(t)=\left< A_1t+A_2, B_1t+B_2, C_1t+C_2\right>\) is a straight line!</strong> 
+       We also have the boundary conditions \(\gamma(0)=P=(1,0,0),\;\gamma(1)=Q=(-1,0,1)\), which
+       imply \[\boxed{\gamma(t)=\left< -2t+1,0,t \right>,\;\;0\leq t\leq 1}.\]
+       
+    </div>
+
+  </details>
+</section>
+
+
+<section class="slide" data-section="Concavity in Infinite Dimensional Space">
+  <div class="eyebrow">12 · Checking Second Derivative</div>
+  <h2>Second Variation of Energy Functional</h2>
+
+  <div class="panel">
+    <strong>Question</strong>: What is the second variation of the energy functional, \(\frac{d^2}{d\varepsilon^2}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]\)?
+    What does this say about the nature of the critical point (straight line) we just found?
+  </div>
+
+  <details>
+    <summary>Solution</summary>
+    <div class="reveal-content">
+      Recall we calculated
+        \[\frac{d}{d\varepsilon}E[\gamma+\varepsilon\eta]=  \frac{1}{2}\int_0^1({2(\gamma'\cdot\eta')+2\varepsilon|\eta'|^2})\,dt;\]
+
+      taking the second derivative and evaluating at \(\varepsilon=0\) yields
+
+      \[\boxed{\frac{d^2}{d\varepsilon^2}\bigg|_{\varepsilon=0}E[\gamma+\varepsilon\eta]=\int_0^1|\eta'|^2\,dt}.\]
+
+      This shows that the second variation is positive for all nontrivial perturbations (\(\eta\not\equiv \vec{0}\)), so
+      \(E\) is 'concave up' everywhere. In fancier terminology, it's strictly convex.
+
+      <p>
+        <strong>In particular, this means the straight line \(\gamma\) obtained previously 
+        is the <em>unique</em> minimizer of \(E\), hence gives the minimum value of \(L\)</strong>. 
+      </p>
+    </div>
+      
+  </details>
+
+  <div class="slide-footer"><span></span><span> </span></div>
+</section>
+
+
+<section class="slide" data-section="Living On a Prayer (or a Cylinder)">
+  <div class="eyebrow">13 · A Whole New World</div>
+  <h2>Change of Scenery: Cylinder</h2>
+  <div class="panel">
+     View \(P\) and \(Q\) as points on the cylinder
+    \[\{(x,y,z):x^2+y^2=1\}\]
+    and restrict possible paths to this surface. How does the setup of the problem change?
+  </div>
+
+  <details>
+    <summary>What do paths \(\gamma\) look like?</summary>
+    <div class="reveal-content">
+      It's no longer the case that \(\gamma(t)=\langle x(t),y(t),z(t)\rangle\)
+      with no restrictions. To stay on the cylinder, we need
+      \(x(t)^2+y(t)^2=1\). Using standard cylindrical coordinates, we write
+      \[
+      \boxed{\gamma(t)=
+      \langle\cos(\theta(t)),\sin(\theta(t)),z(t)\rangle.}
+      \]
+      Here, \(\theta(t)\) is the angular coordinate of our position, 
+      while \(z(t)\) describes our height.
+    </div>
+  </details>
+
+  <details>
+    <summary>How do admissible perturbations \(\eta\) look?</summary>
+    <div class="reveal-content">
+      We can only consider perturbations \(\gamma+\varepsilon\eta\)
+      that remain on the cylinder. We can move vertically (in the \(z\)-direction) or
+      angularly (in the \(\theta\)-direction), so we perturb the functions
+      \(\theta(t)\) and \(z(t)\):
+      \[
+      \boxed{\theta_\varepsilon(t)=\theta(t)+\varepsilon u(t)},
+      \qquad
+      \boxed{z_\varepsilon(t)=z(t)+\varepsilon v(t)}.
+      \]
+      This gives a new curve
+      \[
+      \boxed{\gamma_\varepsilon(t)=
+      \left\langle
+      \cos(\theta+\varepsilon u),
+      \sin(\theta+\varepsilon u),
+      z+\varepsilon v
+      \right\rangle},
+      \]
+      which stays on the cylinder since
+
+      \[(\cos(\theta+\varepsilon u))^2+(\sin(\theta+\varepsilon u))^2=1.\]
+
+      As before, we require the endpoints to remain fixed, so
+      \(u(0)=u(1)=v(0)=v(1)=0\).
+    </div>
+  </details>
+
+  <details>
+    <summary>What happens to the energy?</summary>
+    <div class="reveal-content">
+      Differentiating our parametrization gives, by the chain rule,
+      \[
+      \gamma_\varepsilon'(t)=
+      \left\langle
+      -\sin(\theta_\varepsilon(t))\theta_\varepsilon'(t),
+      \cos(\theta_\varepsilon(t))\theta_\varepsilon'(t),
+      z_\varepsilon'(t)
+      \right\rangle.
+      \]
+      Consequently,
+      \[
+      |\gamma_\varepsilon'(t)|^2
+      =(\theta_\varepsilon'(t))^2+(z_\varepsilon'(t))^2.
+      \]
+      So the energy becomes
+      \[
+      \boxed{
+      E[\gamma_\varepsilon]=\frac12\int_0^1
+      \left(\theta_{\varepsilon}'(t)^2+z_{\varepsilon}'(t)^2\right)\,dt.
+      }
+      \]
+     
+    </div>
+  </details>
+</section>
+
+<section class="slide" data-section="Geometer: That's Fire">
+  <div class="eyebrow">14 · Shortest Paths Depend on Geometry</div>
+  <h2>What is the shortest path from \(P\) to \(Q\) on the cylinder?</h2>
+  <details>
+    <summary>First Variation</summary>
+    <div class="reveal-content">
+      From \(\theta_\varepsilon=\theta+\varepsilon u\), \(z_\varepsilon=z+\varepsilon v\),
+      \[E[\gamma_\varepsilon]=\frac12\int_0^1
+      \left((\theta'+\varepsilon u')^2+(z'+\varepsilon v')^2\right)\,dt\]
+      \[\implies \frac{d}{d\varepsilon}E[\gamma_\varepsilon]=\int_0^1((\theta'+\varepsilon u')u'+(z'+\varepsilon v')v')\,dt.\]
+
+      Evaluating at \(\varepsilon=0\), we find
+
+      \[\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma_\varepsilon]=\int_0^1(\theta' u'+z'v')\,dt.\]
+
+      We can use integration by parts as before to show that
+      \[\boxed{\frac{d}{d\varepsilon}\bigg|_{\varepsilon=0}E[\gamma_\varepsilon]=-\int_0^1(\theta''u+z''v)\,dt}.\]
+    </div>
+  </details>
+
+  <details>
+    <summary>Second Variation</summary>
+    <div class="reveal-content">
+      From the calculation above,
+      \[ \frac{d}{d\varepsilon}E[\gamma_\varepsilon]=\int_0^1((\theta'+\varepsilon u')u'+(z'+\varepsilon v')v')\,dt;\]
+
+      differentiating again,
+      \[\frac{d^2}{d\varepsilon^2}E[\gamma_\varepsilon]=\int_0^1((u')^2+(v')^2)\,dt.\]
+
+      This is independent of \(\varepsilon\) much like before, so
+      \[\boxed{\frac{d^2}{d\varepsilon^2}\bigg|_{\varepsilon=0}E[\gamma_\varepsilon]=\int_0^1((u')^2+(v')^2)\,dt}.\]
+
+      Once again: <strong>the second variation is positive for any perturbation which is not identically 0.</strong>
+    </div>
+  </details>
+
+  <details>
+    <summary>Conclusion</summary>
+    <div class="reveal-content">
+      At a critical curve, the first variation must vanish for every choice of
+      \((u,v)\). As a result, 
+      \[-\int_0^1(\theta''u+z''v)\,dt=0\implies \theta''=0,\;\;z''=0.\]
+      This means the shortest path must be a line...in the \((\theta,z)\)-plane:
+      \[\theta(t)=A_1t+A_2,\;\;z(t)=B_1t+B_2.\]
+      The cylinder takes the \((\theta,z)\)-plane and wraps it up in the \(\theta\)-direction,
+      so we have
+      \[\gamma(t)=\langle \cos(A_1t+A_2), \sin(A_1t+A_2), B_1t+B_2 \rangle.\]
+
+      By the boundary conditions \(\gamma(0)=(1,0,0)\) and \(\gamma(1)=(-1,0,1),\)
+      we can show 
+      \[\boxed{\gamma_n(t)=\langle \cos((2n+1)\pi t), \sin((2n+1)\pi t), t \rangle,\;\;n\in \mathbb{Z}}\]
+      <strong>are all critical!</strong>
+
+      Moreover, since the second variation is positive for all nontrivial perturbations
+      of any curve \(\gamma\), <strong>each of the above is a local minimum of \(E\), 
+        hence a local minimum of \(L\)!
+      </strong>
+      <p>
+
+        ...but which one (ones) is (are) the global minimum (minima)?
+      </p>
+
+    </div>
+  </details>
+
+  <div class="slide-footer"><span></span><span> </span></div>
+</section>
+
+<section class="slide" data-section="You Spin Me Right Round">
+  <div class="eyebrow">15 · Helices</div>
+  
+  
+<div style="width: 100%; max-width: 1000px; margin: 0 auto;">
+  <iframe
+    src="https://www.geogebra.org/material/iframe/id/pdcp7zqc/width/1000/height/650/border/888888/rc/true/ai/false/sdz/true/smb/false/stb/false/stbh/false/sri/true/szb/true"
+    width="100%"
+    height="650"
+    style="border: 0; border-radius: 8px;"
+    scrolling="no"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<details>
+  <summary>Finding global minimizers</summary>
+  <div class="reveal-content">
+    \[L[\gamma_n]=\int_0^1\sqrt{(2n+1)^2\pi^2+1}\,dt=\sqrt{(2n+1)^2\pi^2+1}\]
+
+  This is smallest for \(n=0\) <em>and</em> \(n=-1\), corresponding to the 
+  pieces of helices that traverse in opposite directions:
+
+  \[\boxed{\gamma_0(t)=\langle \cos(\pi t), \sin(\pi t), t \rangle},\;\;0\leq t\leq 1\]
+  \[\boxed{\gamma_{-1}(t)=\langle \cos(\pi t), -\sin(\pi t), t \rangle},\;\;0\leq t\leq 1.\]
+  </div>
+</details>
+</section>
+
+<section class="slide" data-section="So Long...">
+  <div class="eyebrow">16 · Farewell</div>
+  <h2>Thanks for listening! Questions?</h2>
+</section>
+  </main>
+
+  <nav class="controls" aria-label="Slide navigation">
+    <button class="nav-button" id="prev" type="button" aria-label="Previous slide">← Previous</button>
+    <span class="counter" id="counter">1 / 10</span>
+    <button class="nav-button primary" id="next" type="button" aria-label="Next slide">Next →</button>
+  </nav>
+  <div class="keyhint">Navigate with ← and → or Space · Press Home / End to jump · Esc exits presentation view</div>
+</div> 
+
+<script>
+(() => {
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const previous = document.getElementById('prev');
+  const next = document.getElementById('next');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress-bar');
+  const sectionLabel = document.getElementById('section-label');
+  const presentationToggle = document.getElementById('presentation-toggle');
+  let current = 0;
+
+  function getFragments(slide) {
+  return Array.from(slide.querySelectorAll('.fragment'));
+}
+
+function revealNext() {
+  const fragments = getFragments(slides[current]);
+  const nextFragment = fragments.find(
+    fragment => !fragment.classList.contains('revealed')
+  );
+
+  if (nextFragment) {
+    nextFragment.classList.add('revealed');
+    return true;
+  }
+  return false;
+}
+
+function hidePrevious() {
+  const fragments = getFragments(slides[current]);
+  const previousFragment = [...fragments].reverse().find(
+    fragment => fragment.classList.contains('revealed')
+  );
+
+  if (previousFragment) {
+    previousFragment.classList.remove('revealed');
+    return true;
+  }
+  return false;
+}
+  function showSlide(index) {
+    current = Math.max(0, Math.min(index, slides.length - 1));
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === current);
+      slide.setAttribute('aria-hidden', i === current ? 'false' : 'true');
+    });
+    counter.textContent = `${current + 1} / ${slides.length}`;
+    progress.style.width = `${((current + 1) / slides.length) * 100}%`;
+    sectionLabel.textContent = slides[current].dataset.section || `Slide ${current + 1}`;
+    previous.disabled = current === 0;
+    next.disabled = current === slides.length - 1;
+    document.title = `${slides[current].querySelector('h1, h2')?.textContent || 'Activity'} · Honors Calculus III`;
+    getFragments(slides[current]).forEach(fragment => {
+  fragment.classList.remove('revealed');
+});
+  }
+
+  previous.addEventListener('click', () => {
+  if (!hidePrevious() && current > 0) {
+    showSlide(current - 1);
+  }
+});
+
+next.addEventListener('click', () => {
+  if (!revealNext()) {
+    showSlide(current + 1);
+  }
+});
+  presentationToggle.addEventListener('click', () => {
+    const enabled = document.body.classList.toggle('presentation');
+    presentationToggle.setAttribute('aria-pressed', String(enabled));
+    presentationToggle.textContent = enabled ? 'Exit presentation' : 'Presentation view';
+  });
+
+  document.addEventListener('keydown', event => {
+    // Don't change slides when the user is interacting with a form control.
+    if (event.target.closest('input, textarea, select, button, summary, a')) {
+      if (event.key !== 'Escape') return;
+    }
+    if (event.key === 'ArrowRight' || event.key === ' ' || event.key === 'PageDown') {
+  event.preventDefault();
+  if (!revealNext()) showSlide(current + 1);
+} else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
+  event.preventDefault();
+  if (!hidePrevious()) showSlide(current - 1);
+} else if (event.key === 'Home') {
+      event.preventDefault(); showSlide(0);
+    } else if (event.key === 'End') {
+      event.preventDefault(); showSlide(slides.length - 1);
+    } else if (event.key === 'Escape') {
+      document.body.classList.remove('presentation');
+      presentationToggle.setAttribute('aria-pressed', 'false');
+      presentationToggle.textContent = 'Presentation view';
+    }
+  });
+
+  showSlide(0);
+})();
+
+(() => {
+  const initialMasses = [0.10, 0.30, 0.05, 0.40, 0.10, 0.05];
+  const masses = [...initialMasses];
+
+  const controls = document.getElementById('mass-controls');
+  const ticks = document.getElementById('beam-ticks');
+  const markers = document.getElementById('mass-markers');
+  const comLine = document.getElementById('com-line');
+  const comDot = document.getElementById('com-dot');
+  const comLabel = document.getElementById('com-label');
+  const comValue = document.getElementById('com-value');
+  const totalLabel = document.getElementById('mass-total');
+
+  if (!controls || !ticks || !markers) return;
+
+  // Convert a beam position x = 1,...,6 into an SVG coordinate.
+  const px = x => 70 + (x - 1) * 116;
+
+  // Draw the six labeled positions on the beam.
+  for (let x = 1; x <= 6; x++) {
+    const p = px(x);
+    ticks.insertAdjacentHTML('beforeend', `
+      <line x1="${p}" y1="108" x2="${p}" y2="123"
+            stroke="currentColor" stroke-width="1.5"/>
+      <text x="${p}" y="151" text-anchor="middle"
+            fill="currentColor" font-size="15">${x}</text>
+    `);
+  }
+
+  // Create one slider for each point mass.
+  initialMasses.forEach((mass, i) => {
+    controls.insertAdjacentHTML('beforeend', `
+      <div style="display:grid; grid-template-columns:65px 1fr 85px;
+                  align-items:center; gap:12px; margin:12px 0;">
+        <label for="mass-${i}">x = ${i + 1}</label>
+        <input id="mass-${i}" type="range"
+               min="0" max="1" step="0.05" value="${mass}"
+               style="width:100%">
+        <output id="mass-output-${i}">${mass.toFixed(2)} kg</output>
+      </div>
+    `);
+  });
+
+  function update() {
+    let total = 0;
+    let weightedSum = 0;
+
+    masses.forEach((mass, i) => {
+      total += mass;
+      weightedSum += mass * (i + 1);
+
+      document.getElementById(`mass-output-${i}`).textContent =
+        `${mass.toFixed(2)} kg`;
+    });
+
+    markers.innerHTML = masses.map((mass, i) => {
+      const x = px(i + 1);
+      // Larger masses have larger circles; zero mass has no marker.
+      const r = mass === 0 ? 0 : 5 + 13 * Math.sqrt(mass);
+      const labelY = 95 - r;
+
+      return `
+        <circle cx="${x}" cy="115" r="${r}"
+                fill="#4788c7" fill-opacity="0.85"
+                stroke="#245b8e" stroke-width="1.5"/>
+        <text x="${x}" y="${labelY}" text-anchor="middle"
+              fill="currentColor" font-size="13">
+          ${mass.toFixed(2)}
+        </text>
+      `;
+    }).join('');
+
+    totalLabel.textContent = `Total mass: ${total.toFixed(2)} kg`;
+
+    if (total === 0) {
+      comValue.textContent = 'undefined';
+      comLine.style.display = 'none';
+      comDot.style.display = 'none';
+      comLabel.style.display = 'none';
+      return;
+    }
+
+    const center = weightedSum / total;
+    const x = px(center);
+
+    comValue.textContent = center.toFixed(3);
+    comLine.style.display = '';
+    comDot.style.display = '';
+    comLabel.style.display = '';
+
+    comLine.setAttribute('x1', x);
+    comLine.setAttribute('x2', x);
+    comDot.setAttribute('cx', x);
+    comLabel.setAttribute('x', x);
+  }
+
+  masses.forEach((_, i) => {
+    document.getElementById(`mass-${i}`).addEventListener('input', e => {
+      masses[i] = Number(e.target.value);
+      update();
+    });
+  });
+
+  document.getElementById('reset-masses').addEventListener('click', () => {
+    initialMasses.forEach((mass, i) => {
+      masses[i] = mass;
+      document.getElementById(`mass-${i}`).value = mass;
+    });
+    update();
+  });
+
+  update();
+})();
+
+
+(() => {
+  const initial = [0.10, 0.30, 0.05, 0.40, 0.10, 0.05];
+  let p = [...initial];
+  let counts = Array(6).fill(0);
+  let n = 0;
+
+  const $ = id => document.getElementById(id);
+  const controls = $('die-controls');
+  const canvas = $('die-chart');
+  const ctx = canvas.getContext('2d');
+
+  if (!controls || !canvas) return;
+
+  // Create the five adjustable sliders.
+  for (let i = 0; i < 5; i++) {
+    const row = document.createElement('div');
+    row.style.cssText =
+      'display:grid;grid-template-columns:35px 1fr 65px;gap:10px;align-items:center;margin:10px 0';
+
+    row.innerHTML = `
+      <label for="die-p-${i}">p${i + 1}</label>
+      <input id="die-p-${i}" type="range"
+        min="0" max="1" step="0.01" value="${initial[i]}"
+        style="width:100%">
+      <output id="die-out-${i}">${initial[i].toFixed(2)}</output>
+    `;
+    controls.appendChild(row);
+  }
+
+  const last = document.createElement('p');
+  last.innerHTML = 'p<sub>6</sub> = <strong id="die-p6">0.05</strong>';
+  controls.appendChild(last);
+
+  function expected() {
+    return p.reduce((sum, prob, i) => sum + (i + 1) * prob, 0);
+  }
+
+  function resetResults() {
+    counts = Array(6).fill(0);
+    n = 0;
+    $('die-n').textContent = '—';
+    $('die-mean').textContent = '—';
+    draw();
+  }
+
+  function updateProbabilities(changed = 0) {
+    const values = Array.from({length: 5}, (_, i) =>
+      Number($(`die-p-${i}`).value)
+    );
+
+    // If the sliders exceed a total of 1, scale the other
+    // four probabilities to leave room for the changed one.
+    const sum = values.reduce((a, b) => a + b, 0);
+    if (sum > 1) {
+      const fixed = values[changed];
+      const others = values.reduce((s, v, i) =>
+        s + (i === changed ? 0 : v), 0);
+      for (let i = 0; i < 5; i++) {
+        if (i !== changed) {
+          values[i] = others > 0
+            ? Math.floor(((values[i] * (1 - fixed) / others) + 1e-8) * 100) / 100
+            : 0;
+          $(`die-p-${i}`).value = values[i];
+        }
+      }
+    }
+
+    const total = values.reduce((a, b) => a + b, 0);
+    p = [...values, Math.max(0, +(1 - total).toFixed(2))];
+
+    values.forEach((v, i) => {
+      $(`die-out-${i}`).textContent = v.toFixed(2);
+    });
+    $('die-p6').textContent = p[5].toFixed(2);
+    $('die-probability-sum').textContent =
+      `Total probability: ${p.reduce((a, b) => a + b, 0).toFixed(2)}`;
+    $('die-expected').textContent = expected().toFixed(3);
+    draw();
+  }
+
+  function roll() {
+    n = Number($('die-roll-count').value);
+    counts = Array(6).fill(0);
+
+    // Generate independent rolls using cumulative probabilities.
+    const cumulative = [];
+    p.reduce((sum, value, i) =>
+      (cumulative[i] = sum + value, sum + value), 0);
+
+    let total = 0;
+    for (let k = 0; k < n; k++) {
+      const u = Math.random();
+      let i = cumulative.findIndex(c => u < c);
+      if (i < 0) i = 5;
+      counts[i]++;
+      total += i + 1;
+    }
+
+    $('die-n').textContent = n.toLocaleString();
+    $('die-mean').textContent = (total / n).toFixed(3);
+    draw();
+  }
+
+  function draw() {
+    const rect = canvas.getBoundingClientRect();
+    const width = Math.max(rect.width, 280);
+    const height = 300;
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, width, height);
+
+    const left = 38, right = 12, top = 18, bottom = 38;
+    const plotH = height - top - bottom;
+    const plotW = width - left - right;
+    const observed = n ? counts.map(c => c / n) : Array(6).fill(0);
+    const ymax = Math.max(0.5, ...p, ...observed);
+    const scaleMax = Math.min(1, Math.ceil(ymax * 10) / 10);
+    const y = v => top + plotH * (1 - v / scaleMax);
+
+    ctx.font = '12px system-ui, sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#687386';
+    ctx.strokeStyle = '#e1e5ec';
+
+    for (let j = 0; j <= 5; j++) {
+      const value = scaleMax * j / 5;
+      const yy = y(value);
+      ctx.beginPath();
+      ctx.moveTo(left, yy);
+      ctx.lineTo(width - right, yy);
+      ctx.stroke();
+      ctx.fillText(value.toFixed(2), left - 6, yy + 4);
+    }
+
+    const group = plotW / 6;
+    const bw = Math.min(22, group * 0.28);
+
+    for (let i = 0; i < 6; i++) {
+      const center = left + group * (i + 0.5);
+
+      [
+        {value: observed[i], x: center - bw - 2, color: '#3978b8'},
+        {value: p[i], x: center + 2, color: '#d58a34'}
+      ].forEach(bar => {
+        ctx.fillStyle = bar.color;
+        ctx.fillRect(bar.x, y(bar.value), bw,
+          top + plotH - y(bar.value));
+      });
+
+      ctx.fillStyle = '#344054';
+      ctx.textAlign = 'center';
+      ctx.fillText(String(i + 1), center, height - 13);
+    }
+  }
+
+  for (let i = 0; i < 5; i++) {
+    $(`die-p-${i}`).addEventListener('input', () => {
+      resetResults();
+      updateProbabilities(i);
+    });
+  }
+
+  $('die-reset').addEventListener('click', () => {
+    initial.slice(0, 5).forEach((v, i) => {
+      $(`die-p-${i}`).value = v;
+    });
+    resetResults();
+    updateProbabilities();
+  });
+
+  $('die-roll-button').addEventListener('click', roll);
+  $('die-clear-button').addEventListener('click', resetResults);
+  window.addEventListener('resize', draw);
+
+  updateProbabilities();
+  draw();
+})();
+
+
+
+(() => {
+  const lab = document.getElementById("dart-lab");
+  if (!lab || lab.dataset.initialized) return;
+  lab.dataset.initialized = "true";
+
+  const $ = id => document.getElementById(id);
+  const canvas = $("dart-board");
+  const ctx = canvas.getContext("2d");
+
+  const countEl = $("dart-count");
+  const xbarEl = $("dart-xbar");
+  const ybarEl = $("dart-ybar");
+  const statusEl = $("dart-status");
+  const progressEl = $("dart-progress-bar");
+  const runButton = $("dart-run");
+  const resetButton = $("dart-reset");
+  const addButton = $("dart-add");
+  const customInput = $("dart-custom-size");
+  const customButton = $("dart-use-custom");
+  const sizeButtons = [...lab.querySelectorAll("[data-throws]")];
+
+  let sampleSize = 100;
+  let points = [];
+  let shown = 0;
+  let sumX = 0;
+  let sumY = 0;
+  let running = false;
+  let animationId = null;
+
+  function samplePoint() {
+    while (true) {
+      const r = 4 * Math.sqrt(Math.random());
+      const theta = 2 * Math.PI * Math.random();
+      const x = r * Math.cos(theta);
+      const y = r * Math.sin(theta);
+
+      const weight = 25 - x * x - (y - 1) ** 2;
+
+      if (Math.random() < weight / 25) {
+        return { x, y };
+      }
+    }
+  }
+
+  function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    if (!rect.width) return;
+
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.round(rect.width * dpr);
+    canvas.height = Math.round(rect.height * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    draw();
+  }
+
+  function draw() {
+    const rect = canvas.getBoundingClientRect();
+    const w = rect.width;
+    const h = rect.height;
+    if (!w || !h) return;
+
+    ctx.clearRect(0, 0, w, h);
+
+    const scale = Math.min(w, h) * 0.43;
+    const cx = w / 2;
+    const cy = h / 2;
+    const px = x => cx + scale * x / 4;
+    const py = y => cy - scale * y / 4;
+
+    ctx.beginPath();
+    ctx.arc(cx, cy, scale, 0, 2 * Math.PI);
+    ctx.fillStyle = "#f4f8fd";
+    ctx.fill();
+
+    ctx.strokeStyle = "#a5b4c8";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(px(-4.35), py(0));
+    ctx.lineTo(px(4.35), py(0));
+    ctx.moveTo(px(0), py(-4.35));
+    ctx.lineTo(px(0), py(4.35));
+    ctx.stroke();
+
+    ctx.fillStyle = "#344054";
+    ctx.font = "12px system-ui, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("−4", px(-4), py(0) + 16);
+    ctx.fillText("4", px(4), py(0) + 16);
+    ctx.fillText("4", px(0) - 12, py(4) + 4);
+    ctx.fillText("−4", px(0) - 16, py(-4) + 4);
+    ctx.fillText("x", px(4.3), py(0) + 4);
+    ctx.fillText("y", px(0) + 10, py(4.3));
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, scale, 0, 2 * Math.PI);
+    ctx.clip();
+
+    const radius = shown > 1500 ? 1.6 : 2.7;
+    ctx.fillStyle = shown > 1500
+      ? "rgba(40,112,190,0.48)"
+      : "rgba(40,112,190,0.62)";
+
+    for (let i = 0; i < shown; i++) {
+      const p = points[i];
+      ctx.beginPath();
+      ctx.arc(px(p.x), py(p.y), radius, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    ctx.restore();
+
+    ctx.beginPath();
+    ctx.arc(cx, cy, scale, 0, 2 * Math.PI);
+    ctx.strokeStyle = "#27496d";
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  function updateStats() {
+    countEl.textContent = shown.toLocaleString();
+    xbarEl.textContent = shown ? (sumX / shown).toFixed(3) : "—";
+    ybarEl.textContent = shown ? (sumY / shown).toFixed(3) : "—";
+
+    // For "add throws", the progress bar is just a visual indicator.
+    progressEl.style.width =
+      `${100 * shown / Math.max(sampleSize, shown, 1)}%`;
+  }
+
+  function stopAnimation() {
+    if (animationId !== null) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+    running = false;
+  }
+
+  function reset() {
+    stopAnimation();
+    points = [];
+    shown = 0;
+    sumX = 0;
+    sumY = 0;
+
+    updateStats();
+    draw();
+
+    runButton.disabled = false;
+    addButton.disabled = false;
+    runButton.textContent = "▶ Run simulation";
+    statusEl.textContent = "Choose a sample size and run the simulation.";
+  }
+
+  // Animate new throws while retaining any existing sample.
+  function animateTo(target) {
+    if (running) return;
+
+    running = true;
+    runButton.disabled = true;
+    addButton.disabled = true;
+    runButton.textContent = "Simulation running…";
+    statusEl.textContent = "Darts are landing…";
+
+    function animate() {
+      if (!running) return;
+
+      // Generate and draw a batch on each animation frame.
+      const batch = target > 10000 ? 250 : 100;
+      const end = Math.min(shown + batch, target);
+
+      while (shown < end) {
+        const p = samplePoint();
+        points.push(p);
+        sumX += p.x;
+        sumY += p.y;
+        shown++;
+      }
+
+      draw();
+      updateStats();
+
+      if (shown < target) {
+        animationId = requestAnimationFrame(animate);
+      } else {
+        stopAnimation();
+        runButton.disabled = false;
+        addButton.disabled = false;
+        runButton.textContent = "▶ Run again";
+        statusEl.textContent =
+          `Finished ${shown.toLocaleString()} throws. Add more or try another sample size.`;
+      }
+    }
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  function run() {
+    if (running) return;
+    reset();
+    animateTo(sampleSize);
+  }
+
+  sizeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      sampleSize = Number(button.dataset.throws);
+      customInput.value = sampleSize;
+
+      sizeButtons.forEach(b =>
+        b.setAttribute("aria-pressed", String(b === button))
+      );
+
+      reset();
+    });
+  });
+
+  customButton.addEventListener("click", () => {
+    const value = Number(customInput.value);
+
+    if (!Number.isInteger(value) || value < 1 || value > 100000) {
+      statusEl.textContent =
+        "Enter a whole number from 1 to 100,000.";
+      return;
+    }
+
+    sampleSize = value;
+    sizeButtons.forEach(b =>
+      b.setAttribute(
+        "aria-pressed",
+        String(Number(b.dataset.throws) === value)
+      )
+    );
+
+    reset();
+  });
+
+  runButton.addEventListener("click", run);
+
+  addButton.addEventListener("click", () => {
+    if (!running) animateTo(shown + 1000);
+  });
+
+  resetButton.addEventListener("click", reset);
+
+  if ("ResizeObserver" in window) {
+    new ResizeObserver(resizeCanvas).observe(canvas);
+  } else {
+    window.addEventListener("resize", resizeCanvas);
+  }
+
+  resizeCanvas();
+})();
+
+
+
+</script>
+</body>
+</html>

@@ -32,21 +32,21 @@
     "href": "notes/math2110/index.html",
     "title": "Multivariable Calculus",
     "section": "",
-    "text": "These notes explore the geometry and analysis of functions of several variables, with worked examples and optional hints and solutions."
+    "text": "I have been a teaching assistant for this course at UConn in Spring 2023, Fall 2024, Summer 2026, and Fall 2026. When given the chance to teach the Honors discussion section, I put together four walk-throughs on advanced topics adjacent to standard material. For the first presentation, I used Beamer; while aesthetically sound, it’s not as useful for interactivity as HTML, which is what I switched to for the next ones. The fourth and final talk will be about the multivariate Taylor expansion and how curvature appears in the second-order term."
   },
   {
-    "objectID": "notes/math2110/index.html#topics",
-    "href": "notes/math2110/index.html#topics",
+    "objectID": "notes/math2110/index.html#selected-materials",
+    "href": "notes/math2110/index.html#selected-materials",
     "title": "Multivariable Calculus",
-    "section": "Topics",
-    "text": "Topics\n\nGradients and directional derivatives\nHonors Activity Slides: Probability via Multiple Integrals"
+    "section": "Selected Materials",
+    "text": "Selected Materials\n\n\nHonors Activity Slides: Gradient Descent (9/25/2026)\nHonors Activity Slides: Probability via Multiple Integrals (10/16/2026)\nHonors Activity Slides: The Arc Length Functional (11/13/2026)"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Cole Durham",
     "section": "",
-    "text": "I am currently a Ph.D. candidate in mathematics at the University of Connecticut, advised by Ovidiu Munteanu, with an expected graduation date of May 2027.\nMy research explores relationships between geometric and analytic properties of Riemannian manifolds. In particular, I have done work relating to the spectrum of the Laplacian under bounded integral Ricci curvature.\nI have had the great fortune to teach roughly 1000 students throughout my 11 semesters at UConn across Calculus I-III, Calculus for Business and Economics, and Elementary Differential Equations. Being an educator will always be passionate about."
+    "text": "I am currently a Ph.D. candidate in mathematics at the University of Connecticut, advised by Ovidiu Munteanu, with an expected graduation date of May 2027.\nMy research explores relationships between geometric and analytic properties of Riemannian manifolds. In particular, I have done work relating to the spectrum of the Laplacian under bounded integral Ricci curvature.\nI have had the great fortune to teach roughly 1000 students throughout my 11 semesters at UConn across Calculus I, Calculus II, Multivariable Calculus, Calculus for Business and Economics, and Elementary Differential Equations. Being an educator is something I will always be passionate about.\nFeel free to email me with any questions, comments, or collaboration ideas."
   },
   {
     "objectID": "index.html#explore",
@@ -123,7 +123,7 @@
     "href": "teaching.html#teaching-experience",
     "title": "Teaching",
     "section": "Teaching experience",
-    "text": "Teaching experience\nMy teaching experience includes calculus, multivariable calculus, and differential equations, both as a teaching assistant and as an instructor of record.\nAs an instructor, I have designed course materials, assignments, and computational demonstrations to help students connect mathematical theory with applications."
+    "text": "Teaching experience\nMy teaching experience includes Calculus for Business and Economics, Calculus I, Calculus II, Multivariable Calculus, and Elementary Differential Equations, both as a teaching assistant and as an instructor of record.\nAs an instructor, I have designed course materials, assignments, and computational demonstrations to help students connect mathematical theory with applications."
   },
   {
     "objectID": "teaching.html#selected-course-materials",
@@ -158,14 +158,21 @@
     "href": "notes/odes/index.html",
     "title": "Ordinary Differential Equations",
     "section": "",
-    "text": "A selection of review materials and quiz content from MATH 2410: Elementary Differential Equations at UConn which I wrote during Spring 2024."
+    "text": "A selection of content from MATH 2410: Elementary Differential Equations at UConn which I wrote during Spring 2024 as the instructor of record. My only quibble with my past self regarding these notes is that I wish I had typed up the solutions rather than writing them in by hand!"
+  },
+  {
+    "objectID": "notes/odes/index.html#weekly-review-problems",
+    "href": "notes/odes/index.html#weekly-review-problems",
+    "title": "Ordinary Differential Equations",
+    "section": "Weekly Review Problems",
+    "text": "Weekly Review Problems\nWeek 7 Review (Solutions)\nWeek 8 Review (Solutions)\nWeek 9 Review (Solutions)"
   },
   {
     "objectID": "notes/odes/index.html#quizzes",
     "href": "notes/odes/index.html#quizzes",
     "title": "Ordinary Differential Equations",
     "section": "Quizzes",
-    "text": "Quizzes\nQuiz 1\nQuiz 2\nQuiz 3"
+    "text": "Quizzes\nQuiz 1 (Rubric)\nQuiz 2 (Rubric)\nQuiz 3 (Rubric)"
   },
   {
     "objectID": "notes/math2110/gradients.html",
