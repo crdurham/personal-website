@@ -7,6 +7,16 @@ at UConn which I wrote during Spring 2024 as the instructor of record. My only
 quibble with my past self regarding these notes is that I wish I had 
 typed up the solutions rather than writing them in by hand!
 
+## Handwritten Lecture notes
+
+[Week 1](/files/Week 1.pdf)
+
+[Week 2](/files/Week 2.pdf)
+
+[Week 3](/files/Week 3.pdf)
+
+[Week 4](/files/Week 4.pdf)
+
 ## Weekly Review Problems
 
 [Week 7 Review](/files/Week_7_Review.pdf) ([Solutions](/files/Week_7_Review_Sols.pdf))

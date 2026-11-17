@@ -194,5 +194,12 @@
     "title": "Gradients and Directional Derivatives",
     "section": "Example",
     "text": "Example\nLet\n\\[ f(x,y)=x^2+2y^2. \\]\n\n\n\n\n\n\nHint\n\n\n\n\n\nCalculate the two partial derivatives separately.\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\nWe obtain\n\\[\nf_x=2x,\\qquad f_y=4y,\n\\]\nso\n\\[\n\\nabla f(x,y)=\\langle 2x,4y\\rangle.\n\\]\nAt \\((1,2)\\), this becomes\n\\[\n\\nabla f(1,2)=\\langle 2,8\\rangle.\n\\]"
+  },
+  {
+    "objectID": "notes/odes/index.html#handwritten-lecture-notes",
+    "href": "notes/odes/index.html#handwritten-lecture-notes",
+    "title": "Ordinary Differential Equations",
+    "section": "Handwritten Lecture notes",
+    "text": "Handwritten Lecture notes\nWeek 1\nWeek 2\nWeek 3\nWeek 4"
   }
 ]
